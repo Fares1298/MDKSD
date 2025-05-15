@@ -113,14 +113,18 @@ export default function CourseDetail() {
                         Key Benefits
                       </h2>
                       
-                      <ul className="space-y-4">
-                        {course.benefits.map((benefit, index) => (
-                          <li key={index} className="flex">
-                            <span className="text-[#f39c12] mr-3">•</span>
-                            <span className="text-[#2c5282]">{benefit}</span>
-                          </li>
-                        ))}
-                      </ul>
+                      <div className="bg-gradient-to-r from-[#f1faff] to-white p-6 rounded-lg border-l-4 border-[#f39c12] shadow-sm">
+                        <ul className="space-y-4">
+                          {course.benefits.map((benefit: string, index: number) => (
+                            <li key={index} className="flex items-start">
+                              <span className="text-[#f39c12] mr-3 mt-1">
+                                <FontAwesomeIcon icon={faCheckCircle} />
+                              </span>
+                              <span className="text-[#2c5282] text-lg">{benefit}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
                     
                     {/* Future Scope */}
@@ -132,14 +136,18 @@ export default function CourseDetail() {
                         Future Scope
                       </h2>
                       
-                      <ul className="space-y-4">
-                        {course.futureScope.map((scope, index) => (
-                          <li key={index} className="flex">
-                            <span className="text-[#f39c12] mr-3">•</span>
-                            <span className="text-[#2c5282]">{scope}</span>
-                          </li>
-                        ))}
-                      </ul>
+                      <div className="bg-gradient-to-r from-[#f8f9fa] to-white p-6 rounded-lg border-l-4 border-[#172f4f] shadow-sm">
+                        <ul className="space-y-4">
+                          {course.futureScope.map((scope: string, index: number) => (
+                            <li key={index} className="flex items-start">
+                              <span className="text-[#172f4f] mr-3 mt-1">
+                                <FontAwesomeIcon icon={faGraduationCap} />
+                              </span>
+                              <span className="text-[#2c5282] text-lg">{scope}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
                   </div>
                   
@@ -164,16 +172,19 @@ export default function CourseDetail() {
                       </div>
                       
                       <a 
-                        href="#apply"
+                        href="#contact"
                         onClick={(e) => {
                           e.preventDefault();
-                          const applySection = document.getElementById('apply');
-                          if (applySection) {
-                            const offsetTop = applySection.offsetTop - 80;
+                          const contactSection = document.getElementById('contact');
+                          if (contactSection) {
+                            const offsetTop = contactSection.offsetTop - 80;
                             window.scrollTo({
                               top: offsetTop,
                               behavior: 'smooth'
                             });
+                          } else {
+                            // If contact section not on this page, navigate to home page contact
+                            window.location.href = '/#contact';
                           }
                         }}
                         className="block w-full bg-[#f39c12] hover:bg-[#e67e22] text-white font-bold py-3 px-4 rounded-md text-center transition duration-300"
@@ -181,9 +192,16 @@ export default function CourseDetail() {
                         Apply Now
                       </a>
                       
-                      <p className="text-sm text-[#2c5282] mt-4 text-center">
-                        Need more information? Contact our admissions office.
-                      </p>
+                      <div className="mt-6 pt-6 border-t border-gray-200">
+                        <h4 className="font-heading font-semibold text-lg text-[#172f4f] mb-3">Need More Information?</h4>
+                        <p className="text-sm text-[#2c5282] mb-4">
+                          Contact our admissions office for detailed program information, eligibility criteria, and application processes.
+                        </p>
+                        <div className="flex items-center text-sm text-[#2c5282]">
+                          <FontAwesomeIcon icon={faPhone} className="mr-2 text-[#f39c12]" />
+                          <span>+91 94051 09103</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
