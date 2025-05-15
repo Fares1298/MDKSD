@@ -37,6 +37,17 @@ export default function Header() {
 
   const scrollToSection = (sectionId: string) => {
     closeMobileMenu();
+    
+    // Check if we're on a course detail page or another page that's not the homepage
+    const isOnHomePage = window.location.pathname === "/" || window.location.pathname === "";
+    
+    if (!isOnHomePage) {
+      // If we're not on the homepage, navigate to the homepage first
+      window.location.href = `/${sectionId}`;
+      return;
+    }
+    
+    // We're on the homepage, so scroll to the section
     const section = document.getElementById(sectionId.substring(1));
     if (section) {
       const offsetTop = section.offsetTop - 80; // Adjust for header height
@@ -52,7 +63,7 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-3">
           {/* Logo */}
-          <div className="flex items-center flex-shrink-0">
+          <Link href="/" className="flex items-center flex-shrink-0">
             <img 
               src={collegeLogo} 
               alt="MDKSD Paramedical College Logo" 
@@ -64,7 +75,7 @@ export default function Header() {
                 Paramedical College
               </span>
             </div>
-          </div>
+          </Link>
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
@@ -85,10 +96,16 @@ export default function Header() {
           
           {/* Apply Now Button - Desktop */}
           <a 
-            href="#apply"
+            href="#contact"
             onClick={(e) => {
               e.preventDefault();
-              scrollToSection('#apply');
+              const isOnHomePage = window.location.pathname === "/" || window.location.pathname === "";
+              
+              if (!isOnHomePage) {
+                window.location.href = "/#contact";
+              } else {
+                scrollToSection('#contact');
+              }
             }}
             className="hidden md:block bg-[#f39c12] hover:bg-[#e67e22] text-white font-bold py-2 px-6 rounded-md transition duration-300"
           >
@@ -123,10 +140,16 @@ export default function Header() {
             </a>
           ))}
           <a
-            href="#apply"
+            href="#contact"
             onClick={(e) => {
               e.preventDefault();
-              scrollToSection('#apply');
+              const isOnHomePage = window.location.pathname === "/" || window.location.pathname === "";
+              
+              if (!isOnHomePage) {
+                window.location.href = "/#contact";
+              } else {
+                scrollToSection('#contact');
+              }
             }}
             className="block mt-2 text-center bg-[#f39c12] hover:bg-[#e67e22] text-white font-bold py-2 rounded-md transition duration-300"
           >
