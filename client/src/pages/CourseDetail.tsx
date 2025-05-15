@@ -2,7 +2,7 @@ import { useParams, Link } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet-async";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faCalendarAlt, faCheckCircle, faSpinner, faGraduationCap } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faCalendarAlt, faCheckCircle, faSpinner, faGraduationCap, faPhone } from "@fortawesome/free-solid-svg-icons";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
