@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { faUserNurse, faStethoscope, faFlask, faHeartbeat, faPrescriptionBottleMedical } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "wouter";
 
 interface Program {
   id: number;
@@ -61,7 +62,7 @@ function ProgramCard({ program }: ProgramCardProps) {
         </div>
         <h3 className="font-heading font-semibold text-xl text-[#172f4f] text-center mb-2">{program.title}</h3>
         <p className="text-[#2c5282] text-center mb-4">{program.description}</p>
-        <a href={program.link || "#"} className="block text-center text-[#f39c12] hover:text-[#e67e22] font-medium">Learn More →</a>
+        <Link href={program.link || "#"} className="block text-center text-[#f39c12] hover:text-[#e67e22] font-medium">Learn More →</Link>
       </div>
     </div>
   );
@@ -91,12 +92,12 @@ export default function Programs() {
         </div>
         
         <div className="text-center mt-12">
-          <a 
+          <Link 
             href="/courses" 
             className="inline-block bg-[#f39c12] hover:bg-[#e67e22] text-white font-bold py-3 px-8 rounded-md transition duration-300"
           >
             View All Courses
-          </a>
+          </Link>
         </div>
       </div>
     </section>
