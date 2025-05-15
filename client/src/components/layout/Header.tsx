@@ -6,12 +6,12 @@ import { THEME_COLORS } from "@/lib/constants";
 import collegeLogo from "@/assets/college-logo.png";
 
 const navLinks = [
-  { href: "#home", label: "Home" },
-  { href: "#programs", label: "Courses" },
-  { href: "#about", label: "About" },
-  { href: "#gallery", label: "Gallery" },
-  { href: "#videos", label: "Videos" },
-  { href: "#contact", label: "Contact" },
+  { href: "#home", label: "Home", isPageLink: false },
+  { href: "/courses", label: "Courses", isPageLink: true },
+  { href: "#about", label: "About", isPageLink: false },
+  { href: "#gallery", label: "Gallery", isPageLink: false },
+  { href: "#videos", label: "Videos", isPageLink: false },
+  { href: "#contact", label: "Contact", isPageLink: false },
 ];
 
 export default function Header() {
@@ -84,6 +84,11 @@ export default function Header() {
                 key={link.href}
                 href={link.href}
                 onClick={(e) => {
+                  if (link.isPageLink) {
+                    // Let the default navigation to the page URL happen
+                    return;
+                  }
+                  // For section links within the homepage
                   e.preventDefault();
                   scrollToSection(link.href);
                 }}
@@ -131,6 +136,12 @@ export default function Header() {
               key={link.href}
               href={link.href}
               onClick={(e) => {
+                if (link.isPageLink) {
+                  // Close mobile menu but let default navigation happen
+                  closeMobileMenu();
+                  return;
+                }
+                // For section links
                 e.preventDefault();
                 scrollToSection(link.href);
               }}
