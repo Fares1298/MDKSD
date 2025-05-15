@@ -13,7 +13,9 @@ export default function CourseDetail() {
   
   const { data: courseData, isLoading, error } = useQuery<{ success: boolean, data: CourseType }>({ 
     queryKey: ["/api/courses", slug],
-    enabled: !!slug
+    enabled: !!slug,
+    retry: 3,
+    refetchOnWindowFocus: false
   });
   
   const course = courseData?.data;
@@ -35,12 +37,12 @@ export default function CourseDetail() {
         <div className="bg-gray-50 py-3">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center text-sm text-[#2c5282]">
-              <Link href="/">
-                <a className="hover:text-[#172f4f]">Home</a>
+              <Link href="/" className="hover:text-[#172f4f]">
+                Home
               </Link>
               <span className="mx-2">/</span>
-              <Link href="/courses">
-                <a className="hover:text-[#172f4f]">Courses</a>
+              <Link href="/courses" className="hover:text-[#172f4f]">
+                Courses
               </Link>
               {course && (
                 <>

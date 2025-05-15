@@ -27,6 +27,8 @@ export default function Courses() {
   
   const { data: coursesData, isLoading, error } = useQuery<{ success: boolean, data: CourseType[] }>({ 
     queryKey: ["/api/courses"],
+    retry: 3,
+    refetchOnWindowFocus: false,
   });
   
   // Filter courses based on search term
