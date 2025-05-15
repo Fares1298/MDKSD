@@ -5,6 +5,7 @@ import Hero from "@/components/sections/Hero";
 import Programs from "@/components/sections/Programs";
 import About from "@/components/sections/About";
 import Gallery from "@/components/sections/Gallery";
+import Videos from "@/components/sections/Videos";
 import Testimonials from "@/components/sections/Testimonials";
 import Contact from "@/components/sections/Contact";
 import { Helmet } from "react-helmet-async";
@@ -52,6 +53,7 @@ export default function Home() {
         </div>
         <About />
         <Gallery />
+        <Videos />
         <Testimonials />
         <div ref={contactRef}>
           <Contact />
