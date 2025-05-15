@@ -7,7 +7,7 @@ interface HeroProps {
 
 export default function Hero({ onExploreClick, onContactClick }: HeroProps) {
   return (
-    <section id="home" className="relative bg-[#1d3557] min-h-[600px] flex items-center">
+    <section id="home" className="relative bg-[#0b1a2f] min-h-[600px] flex items-center">
       {/* Overlay */}
       <div className="absolute inset-0 bg-black opacity-50 z-10"></div>
       
@@ -27,19 +27,19 @@ export default function Hero({ onExploreClick, onContactClick }: HeroProps) {
           <h1 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-6">
             Empowering Future Healthcare Leaders
           </h1>
-          <p className="text-xl md:text-2xl text-[#a8dadc] mb-8">
+          <p className="text-xl md:text-2xl text-[#a8c7dc] mb-8">
             Excellence in Nursing & Allied Sciences with UGC-approved programs, flexible learning modes, and hands-on clinical training.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <button
               onClick={onExploreClick}
-              className="bg-[#3c6e71] hover:bg-teal-700 text-white font-bold py-3 px-8 rounded-md text-center transition duration-300"
+              className="bg-[#f39c12] hover:bg-[#e67e22] text-white font-bold py-3 px-8 rounded-md text-center transition duration-300"
             >
               Explore Our Courses
             </button>
             <button
               onClick={onContactClick}
-              className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#1d3557] font-bold py-3 px-8 rounded-md text-center transition duration-300"
+              className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#172f4f] font-bold py-3 px-8 rounded-md text-center transition duration-300"
             >
               Contact Us
             </button>

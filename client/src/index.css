@@ -16,15 +16,15 @@
   --border: 214.3 31.8% 91.4%;
   --input: 214.3 31.8% 91.4%;
   
-  /* College Theme Colors */
-  --primary: 181 34% 34%; /* #3c6e71 - teal */
+  /* College Theme Colors - Extracted from logo */
+  --primary: 212 54% 20%; /* #172f4f - deep blue */
   --primary-foreground: 0 0% 100%;
-  --secondary: 214 39% 23%; /* #1d3557 - dark blue */
+  --secondary: 216 65% 12%; /* #0b1a2f - darker blue */
   --secondary-foreground: 0 0% 100%;
-  --accent: 353 83% 57%; /* #e63946 - red */
+  --accent: 36 89% 51%; /* #f39c12 - orange */
   --accent-foreground: 0 0% 100%;
   
-  --ring: 181 34% 34%;
+  --ring: 212 54% 20%;
   --radius: 0.5rem;
 }
 
@@ -41,11 +41,11 @@
   --input: 240 3.7% 15.9%;
   
   /* College Theme Colors - Dark Mode */
-  --primary: 182 34% 43%; /* lighter teal for dark mode */
+  --primary: 212 54% 30%; /* lighter deep blue for dark mode */
   --primary-foreground: 0 0% 98%;
-  --secondary: 213 41% 32%; /* lighter blue for dark mode */
+  --secondary: 216 65% 22%; /* lighter darker blue for dark mode */
   --secondary-foreground: 0 0% 98%;
-  --accent: 353 83% 67%; /* lighter red for dark mode */
+  --accent: 36 89% 61%; /* lighter orange for dark mode */
   --accent-foreground: 0 0% 98%;
   
   --ring: 240 4.9% 83.9%;

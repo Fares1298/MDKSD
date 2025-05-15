@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookF, faTwitter, faInstagram, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import collegeLogo from "@/assets/college-logo.png";
 
 const quickLinks = [
   { href: "#home", label: "Home" },
@@ -15,6 +16,7 @@ const programs = [
   { href: "#", label: "BSc Nursing" },
   { href: "#", label: "Diploma in Medical Lab Technology" },
   { href: "#", label: "Diploma in Physiotherapy" },
+  { href: "#", label: "Diploma in Pharmacy (D.Pharm)" },
 ];
 
 const accreditations = [
@@ -42,26 +44,33 @@ const scrollToSection = (sectionId: string) => {
 
 export default function Footer() {
   return (
-    <footer className="bg-[#1d3557] text-white py-12">
+    <footer className="bg-[#0b1a2f] text-white py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Column 1: About */}
           <div>
-            <h3 className="font-heading font-bold text-xl mb-4">MD Institute</h3>
-            <p className="text-[#a8dadc] mb-4">
+            <div className="flex items-center mb-4">
+              <img 
+                src={collegeLogo} 
+                alt="MDKSD Paramedical College Logo" 
+                className="h-12 w-auto mr-3"
+              />
+              <h3 className="font-heading font-bold text-xl">MDKSD</h3>
+            </div>
+            <p className="text-[#a8c7dc] mb-4">
               Matoshree Dr Kanchan Shantilalji Desarda Mahavidyalya - Empowering Future Healthcare Leaders
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-white hover:text-[#a8dadc] transition-colors" aria-label="Facebook">
+              <a href="#" className="text-white hover:text-[#f39c12] transition-colors" aria-label="Facebook">
                 <FontAwesomeIcon icon={faFacebookF} />
               </a>
-              <a href="#" className="text-white hover:text-[#a8dadc] transition-colors" aria-label="Twitter">
+              <a href="#" className="text-white hover:text-[#f39c12] transition-colors" aria-label="Twitter">
                 <FontAwesomeIcon icon={faTwitter} />
               </a>
-              <a href="#" className="text-white hover:text-[#a8dadc] transition-colors" aria-label="Instagram">
+              <a href="#" className="text-white hover:text-[#f39c12] transition-colors" aria-label="Instagram">
                 <FontAwesomeIcon icon={faInstagram} />
               </a>
-              <a href="#" className="text-white hover:text-[#a8dadc] transition-colors" aria-label="LinkedIn">
+              <a href="#" className="text-white hover:text-[#f39c12] transition-colors" aria-label="LinkedIn">
                 <FontAwesomeIcon icon={faLinkedinIn} />
               </a>
             </div>
@@ -79,7 +88,7 @@ export default function Footer() {
                       e.preventDefault();
                       scrollToSection(link.href);
                     }}
-                    className="text-[#a8dadc] hover:text-white transition-colors"
+                    className="text-[#a8c7dc] hover:text-[#f39c12] transition-colors"
                   >
                     {link.label}
                   </a>
@@ -94,7 +103,7 @@ export default function Footer() {
             <ul className="space-y-2">
               {programs.map((program, index) => (
                 <li key={index}>
-                  <a href={program.href} className="text-[#a8dadc] hover:text-white transition-colors">
+                  <a href={program.href} className="text-[#a8c7dc] hover:text-[#f39c12] transition-colors">
                     {program.label}
                   </a>
                 </li>
@@ -107,7 +116,7 @@ export default function Footer() {
             <h3 className="font-heading font-bold text-xl mb-4">Accreditations</h3>
             <div className="flex flex-wrap gap-4">
               {accreditations.map((accreditation, index) => (
-                <span key={index} className="bg-white/10 p-2 rounded text-sm">
+                <span key={index} className="bg-[#172f4f] p-2 rounded text-sm">
                   {accreditation.label}
                 </span>
               ))}
@@ -115,7 +124,7 @@ export default function Footer() {
             
             <div className="mt-6">
               <Select defaultValue="english">
-                <SelectTrigger className="w-full bg-[#457b9d]/10 border-[#457b9d]/20">
+                <SelectTrigger className="w-full bg-[#172f4f] border-[#2c5282]/40">
                   <SelectValue placeholder="Select language" />
                 </SelectTrigger>
                 <SelectContent>
@@ -131,8 +140,8 @@ export default function Footer() {
         </div>
         
         {/* Copyright */}
-        <div className="border-t border-white/20 mt-8 pt-8 text-center">
-          <p className="text-[#a8dadc]">
+        <div className="border-t border-[#2c5282]/40 mt-8 pt-8 text-center">
+          <p className="text-[#a8c7dc]">
             &copy; {new Date().getFullYear()} Matoshree Dr Kanchan Shantilalji Desarda Mahavidyalya. All rights reserved.
           </p>
         </div>
