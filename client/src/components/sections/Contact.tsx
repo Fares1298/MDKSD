@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMapMarkerAlt, faClock, faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { faMapMarkerAlt, faClock, faEnvelope, faPhone, faDirections } from "@fortawesome/free-solid-svg-icons";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -118,16 +118,29 @@ export default function Contact() {
             </div>
             
             {/* Map */}
-            <div className="h-[300px] rounded-lg shadow-md relative overflow-hidden">
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3752.2981882854544!2d75.3371273!3d19.8968866!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bdba2a00bcd2e8b%3A0xd96c173511b94fa2!2sBibi%20Ka%20Maqbara!5e0!3m2!1sen!2sin!4v1667922844932!5m2!1sen!2sin" 
-                width="100%" 
-                height="100%" 
-                style={{ border: 0 }} 
-                allowFullScreen 
-                loading="lazy" 
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
+            <div className="rounded-lg shadow-md overflow-hidden">
+              <div className="h-[300px] relative">
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m24!1m12!1m3!1d29982.8941943432!2d75.31979945723444!3d19.873634249999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m9!3e0!4m3!3m2!1d19.8806642!2d75.3560346!4m3!3m2!1d19.865258299999998!2d75.317125!5e0!3m2!1sen!2sin!4v1747294257!5m2!1sen!2sin" 
+                  width="100%" 
+                  height="100%" 
+                  style={{ border: 0 }} 
+                  allowFullScreen 
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+              <div className="bg-gradient-to-r from-[#f1faee] to-[#edf6f6] p-4 text-center">
+                <a 
+                  href="https://www.google.com/maps/dir/19.8806642,75.3560346/19.8652583,75.317125/@19.8736343,75.2947972,13z/data=!3m1!4b1!4m4!4m3!1m1!4e1!1m0?entry=ttu&g_ep=EgoyMDI1MDUxMi4wIKXMDSoASAFQAw%3D%3D" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center text-[#457b9d] bg-[#3c6e71]/10 hover:bg-[#3c6e71]/20 px-4 py-2 rounded-md transition-colors duration-200 font-medium"
+                >
+                  <FontAwesomeIcon icon={faDirections} className="mr-2 text-[#3c6e71]" />
+                  Get Directions to Campus
+                </a>
+              </div>
             </div>
           </div>
           
