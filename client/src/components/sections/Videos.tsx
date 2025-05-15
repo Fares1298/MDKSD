@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlay, faPlayCircle, faYoutube } from "@fortawesome/free-solid-svg-icons";
+import { faPlay, faPlayCircle, faVideo } from "@fortawesome/free-solid-svg-icons";
+import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 
 interface Video {
   id: number;
