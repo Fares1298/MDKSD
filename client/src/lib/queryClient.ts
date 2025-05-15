@@ -29,12 +29,24 @@ export const getQueryFn: <T>(options: {
 }) => QueryFunction<T> =
   ({ on401: unauthorizedBehavior }) =>
   async ({ queryKey }) => {
-    // Handle array queryKey like ['/api/courses', 'slug']
+    // Handle array queryKey properly
     let url: string;
-    if (typeof queryKey[0] === 'string' && queryKey.length > 1 && typeof queryKey[1] === 'string') {
-      url = `${queryKey[0]}/${queryKey[1]}`;
+    
+    if (typeof queryKey[0] === 'string') {
+      if (queryKey.length > 1 && typeof queryKey[1] === 'string') {
+        // Handle special case for course detail
+        if (queryKey[0] === '/api/courses' && queryKey[1]) {
+          url = `/api/courses/${queryKey[1]}`;
+          console.log(`Making request to: ${url}`);
+        } else {
+          // Generic case
+          url = `${queryKey[0]}/${queryKey[1]}`;
+        }
+      } else {
+        url = queryKey[0];
+      }
     } else {
-      url = queryKey[0] as string;
+      throw new Error('Invalid queryKey format');
     }
     
     const res = await fetch(url, {

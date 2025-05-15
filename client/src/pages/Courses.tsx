@@ -32,10 +32,10 @@ export default function Courses() {
   });
   
   // Filter courses based on search term
-  const filteredCourses = coursesData?.data.filter(course => 
+  const filteredCourses = coursesData?.data ? coursesData.data.filter(course => 
     course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
     course.overview.toLowerCase().includes(searchTerm.toLowerCase())
-  ) || [];
+  ) : [];
   
   return (
     <>
