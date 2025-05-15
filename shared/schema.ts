@@ -69,6 +69,7 @@ export interface CourseType {
   benefits: string[];
   futureScope: string[];
   duration: string;
+  imageUrl: string;
   createdAt: Date;
   updatedAt: Date;
 }

@@ -113,7 +113,8 @@ export class MemStorage implements IStorage {
         futureScope: [
           "Work as a hospital pharmacist, community pharmacist, or in clinical research organizations (CROs).",
           "Higher studies: B.Pharm, M.Pharm, MBA in Pharmaceutical Management, or specialization in clinical research."
-        ]
+        ],
+        imageUrl: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?q=80&w=1469&auto=format&fit=crop"
       },
       {
         slug: "bsc-nursing",
@@ -127,7 +128,8 @@ export class MemStorage implements IStorage {
         futureScope: [
           "Pursue MSc Nursing (Medical-Surgical, Pediatric, Public Health) or specialized diplomas (Critical Care, Oncology, Mental Health).",
           "Career roles include Nurse Educator, Nurse Administrator, Clinical Instructor, and opportunities in research and policy."
-        ]
+        ],
+        imageUrl: "https://images.unsplash.com/photo-1631815587646-b85a1bb027e1?q=80&w=1632&auto=format&fit=crop"
       },
       {
         slug: "gnm",
@@ -141,7 +143,8 @@ export class MemStorage implements IStorage {
         futureScope: [
           "Upgradable to BSc Nursing via lateral entry.",
           "Roles in government hospitals, private clinics, NGOs, forensics, and defence services."
-        ]
+        ],
+        imageUrl: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1480&auto=format&fit=crop"
       },
       {
         slug: "dccn",
@@ -155,7 +158,8 @@ export class MemStorage implements IStorage {
         futureScope: [
           "High demand for Critical Care Nurses in tertiary hospitals and specialized centres.",
           "Pathway to postgraduate studies: MSc in Critical Care Nursing or PG Diploma in Emergency Nursing."
-        ]
+        ],
+        imageUrl: "https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=1332&auto=format&fit=crop"
       },
       {
         slug: "dmlt",
@@ -169,7 +173,8 @@ export class MemStorage implements IStorage {
         futureScope: [
           "Roles as Lab Technician, Lab Supervisor, Quality Control Analyst.",
           "Further studies: BSc MLT, MSc in Medical Laboratory Technology, or specialized certifications."
-        ]
+        ],
+        imageUrl: "https://images.unsplash.com/photo-1581093196277-9f6e9b82d000?q=80&w=1470&auto=format&fit=crop"
       },
       {
         slug: "physiotherapy",
@@ -183,7 +188,8 @@ export class MemStorage implements IStorage {
         futureScope: [
           "Employment in hospitals, sports academies, rehabilitation centres, and private practice.",
           "Pathway to BPT, MPT, and specializations in cardio-respiratory or neuro-physiotherapy."
-        ]
+        ],
+        imageUrl: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1470&auto=format&fit=crop"
       },
       {
         slug: "paramedical-cosmetology",
@@ -197,7 +203,8 @@ export class MemStorage implements IStorage {
         futureScope: [
           "Career options as Cosmetology Technician, Skin Care Specialist, or Salon Manager.",
           "Further credentials: Advanced Diploma in Laser Therapy, PG Diploma in Medical Aesthetics."
-        ]
+        ],
+        imageUrl: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?q=80&w=1335&auto=format&fit=crop"
       }
     ];
     

@@ -97,21 +97,38 @@ export default function Courses() {
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {filteredCourses.map((course) => (
-                      <div key={course.id} className="bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden">
-                        <div className="bg-[#172f4f]/5 p-6">
-                          <div className="flex justify-between items-start mb-4">
-                            <div className="w-12 h-12 bg-[#172f4f]/10 rounded-full flex items-center justify-center">
+                      <div key={course.id} className="bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden h-full">
+                        <div 
+                          className="relative h-48 bg-cover bg-center" 
+                          style={{ backgroundImage: `url(${course.imageUrl})` }}
+                        >
+                          {/* White gradient overlay for text visibility */}
+                          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/20 to-white/90"></div>
+                          
+                          {/* Badge position over image */}
+                          <div className="absolute top-4 right-4">
+                            <Badge className="bg-[#f39c12] hover:bg-[#f39c12] font-medium text-white">{course.duration}</Badge>
+                          </div>
+
+                          {/* Heading positioned at bottom of image with gradient behind it */}
+                          <div className="absolute bottom-0 left-0 right-0 p-6">
+                            <h2 className="font-heading font-semibold text-xl text-[#172f4f]">{course.title}</h2>
+                          </div>
+                        </div>
+                        
+                        <div className="p-6">
+                          <div className="flex items-start mb-4">
+                            <div className="w-10 h-10 bg-[#172f4f]/10 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
                               <FontAwesomeIcon 
                                 icon={courseIcons[course.slug] || faUserNurse} 
-                                className="text-xl text-[#172f4f]" 
+                                className="text-lg text-[#172f4f]" 
                               />
                             </div>
-                            <Badge className="bg-[#f39c12] hover:bg-[#f39c12]">{course.duration}</Badge>
+                            <p className="text-[#2c5282] line-clamp-3">{course.overview}</p>
                           </div>
-                          <h2 className="font-heading font-semibold text-xl text-[#172f4f] mb-2">{course.title}</h2>
-                          <p className="text-[#2c5282] line-clamp-3 mb-4">{course.overview}</p>
                         </div>
-                        <div className="p-6 pt-4 border-t border-gray-100">
+                        
+                        <div className="p-6 pt-0 mt-auto">
                           <Link href={`/courses/${course.slug}`}>
                             <Button className="w-full bg-[#172f4f] hover:bg-[#0b1a2f]">
                               View Course Details
