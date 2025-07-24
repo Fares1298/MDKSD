@@ -46,12 +46,13 @@ export default function Contact() {
     setIsSubmitting(true);
     
     try {
-      // Send to database and WhatsApp via API
+      // Send to database, WhatsApp, and Email via API
       const response = await apiRequest("POST", "/api/contact", data);
+      const responseData = await response.json();
       
       toast({
         title: "Message sent successfully!",
-        description: "Your inquiry has been sent to our WhatsApp automatically. We'll contact you soon.",
+        description: responseData.message || "Your inquiry has been sent to our WhatsApp and email. We'll contact you soon.",
         variant: "default",
       });
       
@@ -377,7 +378,7 @@ export default function Contact() {
                   {isSubmitting ? "Sending Message..." : "Send Message"}
                 </Button>
                 <p className="text-sm text-gray-600 mt-2">
-                  Your message will be automatically sent to our WhatsApp for quick response.
+                  Your message will be automatically sent to our WhatsApp and email for quick response.
                 </p>
               </div>
             </form>

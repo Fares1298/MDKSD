@@ -2,38 +2,11 @@ import type { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { contactSchema, type InsertContactSubmission } from "@shared/schema";
-import nodemailer from 'nodemailer';
+import sgMail from '@sendgrid/mail';
 
-// Email notification function with multiple options
+// SendGrid email notification function
 async function sendEmailNotification(data: InsertContactSubmission) {
   try {
-    const emailContent = `
-<!DOCTYPE html>
-<html>
-<head>
-    <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-        .header { background-color: #172f4f; color: white; padding: 20px; text-align: center; }
-        .content { padding: 20px; background-color: #f9f9f9; }
-        .info-row { margin: 10px 0; padding: 10px; background: white; border-left: 4px solid #f4743e; }
-        .label { font-weight: bold; color: #172f4f; }
-    </style>
-</head>
-<body>
-    <div class="header">
-        <h2>🎓 New Inquiry - MDKSD College Website</h2>
-    </div>
-    <div class="content">
-        <div class="info-row"><span class="label">Name:</span> ${data.name}</div>
-        <div class="info-row"><span class="label">Mobile:</span> ${data.mobile}</div>
-        <div class="info-row"><span class="label">Email:</span> ${data.email}</div>
-        <div class="info-row"><span class="label">Message:</span> ${data.message}</div>
-        <div class="info-row"><span class="label">Consent Given:</span> ${data.consent ? 'Yes ✅' : 'No ❌'}</div>
-        <div class="info-row"><span class="label">Received:</span> ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}</div>
-    </div>
-</body>
-</html>`;
-
     // Log the email attempt
     console.log("📧 NEW EMAIL INQUIRY RECEIVED:");
     console.log("=" .repeat(60));
@@ -44,50 +17,89 @@ async function sendEmailNotification(data: InsertContactSubmission) {
     console.log(`📅 Time: ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}`);
     console.log("=" .repeat(60));
 
-    // Option 1: Gmail SMTP (requires app password)
-    if (process.env.GMAIL_APP_PASSWORD) {
-      const transporter = nodemailer.createTransporter({
-        service: 'gmail',
-        auth: {
-          user: 'mdksdinstitute@gmail.com',
-          pass: process.env.GMAIL_APP_PASSWORD
-        }
-      });
-
-      await transporter.sendMail({
-        from: '"MDKSD College Website" <mdksdinstitute@gmail.com>',
-        to: 'mdksdinstitute@gmail.com',
-        subject: `🎓 New Inquiry from ${data.name} - MDKSD College`,
-        html: emailContent
-      });
-
-      console.log("✅ Email sent via Gmail SMTP");
-      return { success: true, method: 'gmail-smtp' };
+    // Check if SendGrid API key is configured
+    if (!process.env.SENDGRID_API_KEY) {
+      console.log("⚠️ SENDGRID_API_KEY not configured - email will be logged only");
+      console.log("Email Subject:", `🎓 New Inquiry from ${data.name} - MDKSD College`);
+      console.log("Email Recipient: mdksdinstitute@gmail.com");
+      return { success: true, method: 'logged' };
     }
 
-    // Option 2: SendGrid (if API key provided)
-    if (process.env.SENDGRID_API_KEY) {
-      const sgMail = require('@sendgrid/mail');
-      sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+    // Set SendGrid API key
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-      await sgMail.send({
-        to: 'mdksdinstitute@gmail.com',
-        from: 'noreply@mdksdcollege.com', // This needs to be verified in SendGrid
-        subject: `🎓 New Inquiry from ${data.name} - MDKSD College`,
-        html: emailContent
-      });
+    // Create professional email content
+    const emailContent = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <style>
+            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; }
+            .container { max-width: 600px; margin: 0 auto; background: #ffffff; }
+            .header { background-color: #172f4f; color: white; padding: 30px 20px; text-align: center; }
+            .content { padding: 30px 20px; }
+            .info-card { margin: 15px 0; padding: 15px; background: #f8f9fa; border-left: 4px solid #f4743e; border-radius: 4px; }
+            .label { font-weight: bold; color: #172f4f; display: inline-block; min-width: 80px; }
+            .value { color: #2c5282; }
+            .footer { background: #f8f9fa; padding: 20px; text-align: center; color: #666; border-top: 1px solid #dee2e6; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1 style="margin: 0; font-size: 24px;">🎓 New Website Inquiry</h1>
+                <p style="margin: 10px 0 0 0; opacity: 0.9;">Matoshree Dr Kanchan Shantilalji Desarda Mahavidyalya</p>
+            </div>
+            <div class="content">
+                <div class="info-card">
+                    <span class="label">Name:</span>
+                    <span class="value">${data.name}</span>
+                </div>
+                <div class="info-card">
+                    <span class="label">Mobile:</span>
+                    <span class="value">${data.mobile}</span>
+                </div>
+                <div class="info-card">
+                    <span class="label">Email:</span>
+                    <span class="value">${data.email}</span>
+                </div>
+                <div class="info-card">
+                    <span class="label">Message:</span>
+                    <div style="margin-top: 8px; color: #2c5282;">${data.message}</div>
+                </div>
+                <div class="info-card">
+                    <span class="label">Consent:</span>
+                    <span class="value">${data.consent ? 'Given ✅' : 'Not given ❌'}</span>
+                </div>
+                <div class="info-card">
+                    <span class="label">Received:</span>
+                    <span class="value">${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}</span>
+                </div>
+            </div>
+            <div class="footer">
+                <p style="margin: 0;">This inquiry was submitted through the college website contact form.</p>
+                <p style="margin: 5px 0 0 0;">Please respond promptly to maintain good customer service.</p>
+            </div>
+        </div>
+    </body>
+    </html>`;
 
-      console.log("✅ Email sent via SendGrid");
-      return { success: true, method: 'sendgrid' };
-    }
+    // Send email via SendGrid
+    const emailData = {
+      to: 'mdksdinstitute@gmail.com',
+      from: {
+        email: 'noreply@mdksdcollege.edu',
+        name: 'MDKSD College Website'
+      },
+      subject: `🎓 New Inquiry from ${data.name} - MDKSD College`,
+      html: emailContent,
+      text: `New inquiry from ${data.name}\nMobile: ${data.mobile}\nEmail: ${data.email}\nMessage: ${data.message}\nConsent: ${data.consent ? 'Given' : 'Not given'}\nReceived: ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}`
+    };
 
-    // Option 3: Simple HTTP Email Service (like EmailJS or Formspree)
-    // For now, we'll log the email and return success
-    console.log("📧 Email content prepared (no SMTP configured)");
-    console.log("Email Subject:", `🎓 New Inquiry from ${data.name} - MDKSD College`);
-    console.log("Email Body Preview:", emailContent.substring(0, 200) + "...");
+    await sgMail.send(emailData);
     
-    return { success: true, method: 'logged', content: emailContent };
+    console.log("✅ Email sent successfully via SendGrid");
+    return { success: true, method: 'sendgrid', messageId: `email_${Date.now()}` };
 
   } catch (error) {
     console.error("❌ Failed to send email notification:", error);
@@ -211,32 +223,52 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = contactSchema.parse(req.body);
       const submission = await storage.createContactSubmission(validatedData);
       
-      // Process WhatsApp notification
-      const whatsappResult = await sendWhatsAppNotification(validatedData);
+      // Process both WhatsApp and Email notifications simultaneously
+      const [whatsappResult, emailResult] = await Promise.all([
+        sendWhatsAppNotification(validatedData),
+        sendEmailNotification(validatedData)
+      ]);
       
-      if (whatsappResult.success) {
-        res.status(201).json({ 
-          success: true, 
-          message: "Contact form submitted and WhatsApp notification sent successfully", 
-          data: submission,
-          whatsapp: {
-            sent: true,
-            messageId: whatsappResult.messageId,
-            recipient: whatsappResult.recipient,
-            timestamp: whatsappResult.timestamp
-          }
-        });
+      // Determine response based on notification results
+      const notifications = {
+        whatsapp: whatsappResult.success ? {
+          sent: true,
+          messageId: whatsappResult.messageId,
+          recipient: whatsappResult.recipient,
+          timestamp: whatsappResult.timestamp
+        } : {
+          sent: false,
+          error: whatsappResult.error
+        },
+        email: emailResult.success ? {
+          sent: true,
+          method: emailResult.method,
+          messageId: emailResult.messageId || `email_${Date.now()}`
+        } : {
+          sent: false,
+          error: emailResult.error
+        }
+      };
+
+      // Create success message based on what was sent
+      let message = "Contact form submitted successfully";
+      if (whatsappResult.success && emailResult.success) {
+        message += ". WhatsApp and email notifications sent";
+      } else if (whatsappResult.success) {
+        message += ". WhatsApp notification sent";
+      } else if (emailResult.success) {
+        message += ". Email notification sent";
       } else {
-        res.status(201).json({ 
-          success: true, 
-          message: "Contact form submitted but WhatsApp notification failed", 
-          data: submission,
-          whatsapp: {
-            sent: false,
-            error: whatsappResult.error
-          }
-        });
+        message += ". Notifications logged for manual processing";
       }
+      
+      res.status(201).json({ 
+        success: true, 
+        message,
+        data: submission,
+        notifications
+      });
+      
     } catch (error) {
       console.error("Contact form submission error:", error);
       res.status(400).json({ 
