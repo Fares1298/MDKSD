@@ -37,8 +37,10 @@ export default function Courses() {
   
   const { data: coursesData, isLoading, error } = useQuery<{ success: boolean, data: CourseType[] }>({ 
     queryKey: ["/api/courses"],
-    retry: 3,
+    retry: 2,
     refetchOnWindowFocus: false,
+    staleTime: 5 * 60 * 1000, // 5 minutes
+    gcTime: 10 * 60 * 1000, // 10 minutes
   });
   
   // Filter courses based on search term
@@ -90,9 +92,24 @@ export default function Courses() {
             
             {/* Course List */}
             {isLoading ? (
-              <div className="text-center py-20">
-                <FontAwesomeIcon icon={faSpinner} className="animate-spin text-4xl text-[#172f4f]" />
-                <p className="mt-4 text-[#2c5282]">Loading courses...</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {Array.from({ length: 6 }).map((_, index) => (
+                  <div key={index} className="bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden h-full animate-pulse">
+                    <div className="h-48 bg-gray-200"></div>
+                    <div className="p-6">
+                      <div className="flex items-start mb-4">
+                        <div className="w-10 h-10 bg-gray-200 rounded-full mr-3 flex-shrink-0"></div>
+                        <div className="flex-1">
+                          <div className="h-4 bg-gray-200 rounded mb-2"></div>
+                          <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="p-6 pt-0">
+                      <div className="h-10 bg-gray-200 rounded"></div>
+                    </div>
+                  </div>
+                ))}
               </div>
             ) : error ? (
               <div className="text-center py-20">
@@ -108,10 +125,13 @@ export default function Courses() {
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {filteredCourses.map((course) => (
                       <div key={course.id} className="bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden h-full">
-                        <div 
-                          className="relative h-48 bg-cover bg-center" 
-                          style={{ backgroundImage: `url(${course.imageUrl})` }}
-                        >
+                        <div className="relative h-48 overflow-hidden">
+                          <img 
+                            src={course.imageUrl} 
+                            alt={course.title}
+                            loading="lazy"
+                            className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                          />
                           {/* White gradient overlay for text visibility */}
                           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/20 to-white/90"></div>
                           

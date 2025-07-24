@@ -114,7 +114,7 @@ export class MemStorage implements IStorage {
           "Work as a hospital pharmacist, community pharmacist, or in clinical research organizations (CROs).",
           "Higher studies: B.Pharm, M.Pharm, MBA in Pharmaceutical Management, or specialization in clinical research."
         ],
-        imageUrl: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?q=80&w=1469&auto=format&fit=crop"
+        imageUrl: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?q=80&w=400&auto=format&fit=crop"
       },
       {
         slug: "bsc-nursing",
@@ -129,7 +129,7 @@ export class MemStorage implements IStorage {
           "Pursue MSc Nursing (Medical-Surgical, Pediatric, Public Health) or specialized diplomas (Critical Care, Oncology, Mental Health).",
           "Career roles include Nurse Educator, Nurse Administrator, Clinical Instructor, and opportunities in research and policy."
         ],
-        imageUrl: "https://images.unsplash.com/photo-1631815587646-b85a1bb027e1?q=80&w=1632&auto=format&fit=crop"
+        imageUrl: "https://images.unsplash.com/photo-1631815587646-b85a1bb027e1?q=80&w=400&auto=format&fit=crop"
       },
       {
         slug: "gnm",
@@ -144,7 +144,7 @@ export class MemStorage implements IStorage {
           "Upgradable to BSc Nursing via lateral entry.",
           "Roles in government hospitals, private clinics, NGOs, forensics, and defence services."
         ],
-        imageUrl: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1480&auto=format&fit=crop"
+        imageUrl: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=400&auto=format&fit=crop"
       },
       {
         slug: "dccn",
@@ -159,7 +159,7 @@ export class MemStorage implements IStorage {
           "High demand for Critical Care Nurses in tertiary hospitals and specialized centres.",
           "Pathway to postgraduate studies: MSc in Critical Care Nursing or PG Diploma in Emergency Nursing."
         ],
-        imageUrl: "https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=1332&auto=format&fit=crop"
+        imageUrl: "https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=400&auto=format&fit=crop"
       },
       {
         slug: "dmlt",
@@ -174,7 +174,7 @@ export class MemStorage implements IStorage {
           "Roles as Lab Technician, Lab Supervisor, Quality Control Analyst.",
           "Further studies: BSc MLT, MSc in Medical Laboratory Technology, or specialized certifications."
         ],
-        imageUrl: "https://images.unsplash.com/photo-1581093196277-9f6e9b82d000?q=80&w=1470&auto=format&fit=crop"
+        imageUrl: "https://images.unsplash.com/photo-1581093196277-9f6e9b82d000?q=80&w=400&auto=format&fit=crop"
       },
       {
         slug: "physiotherapy",
@@ -189,7 +189,7 @@ export class MemStorage implements IStorage {
           "Employment in hospitals, sports academies, rehabilitation centres, and private practice.",
           "Pathway to BPT, MPT, and specializations in cardio-respiratory or neuro-physiotherapy."
         ],
-        imageUrl: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1470&auto=format&fit=crop"
+        imageUrl: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=400&auto=format&fit=crop"
       },
       {
         slug: "paramedical-cosmetology",
@@ -204,7 +204,7 @@ export class MemStorage implements IStorage {
           "Career options as Cosmetology Technician, Skin Care Specialist, or Salon Manager.",
           "Further credentials: Advanced Diploma in Laser Therapy, PG Diploma in Medical Aesthetics."
         ],
-        imageUrl: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?q=80&w=1335&auto=format&fit=crop"
+        imageUrl: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?q=80&w=400&auto=format&fit=crop"
       },
       {
         slug: "pgdmlt",
@@ -223,7 +223,7 @@ export class MemStorage implements IStorage {
           "Research opportunities in clinical laboratories",
           "Academic positions in paramedical colleges"
         ],
-        imageUrl: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?q=80&w=1470&auto=format&fit=crop"
+        imageUrl: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?q=80&w=400&auto=format&fit=crop"
       },
       {
         slug: "xray-technician",
@@ -242,7 +242,7 @@ export class MemStorage implements IStorage {
           "Career advancement to senior imaging roles",
           "Government and semi-government job opportunities"
         ],
-        imageUrl: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?q=80&w=1469&auto=format&fit=crop"
+        imageUrl: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?q=80&w=400&auto=format&fit=crop"
       },
       {
         slug: "ct-scan-technician",
@@ -261,7 +261,7 @@ export class MemStorage implements IStorage {
           "Career progression to lead technician positions",
           "Opportunities in private diagnostic chains"
         ],
-        imageUrl: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?q=80&w=1470&auto=format&fit=crop"
+        imageUrl: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?q=80&w=400&auto=format&fit=crop"
       },
       {
         slug: "ecg-technician",
@@ -280,7 +280,7 @@ export class MemStorage implements IStorage {
           "Roles in emergency medical services",
           "Career advancement to cardiac care specialization"
         ],
-        imageUrl: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?q=80&w=1469&auto=format&fit=crop"
+        imageUrl: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?q=80&w=400&auto=format&fit=crop"
       },
       {
         slug: "ot-technician",
@@ -299,7 +299,7 @@ export class MemStorage implements IStorage {
           "Opportunities in day care surgical centers",
           "Career advancement to OT supervisor positions"
         ],
-        imageUrl: "https://images.unsplash.com/photo-1551190822-a9333d879b1f?q=80&w=1470&auto=format&fit=crop"
+        imageUrl: "https://images.unsplash.com/photo-1551190822-a9333d879b1f?q=80&w=400&auto=format&fit=crop"
       },
       {
         slug: "pg-radiology",
@@ -318,7 +318,7 @@ export class MemStorage implements IStorage {
           "Quality assurance in imaging departments",
           "Research opportunities in medical imaging"
         ],
-        imageUrl: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?q=80&w=1470&auto=format&fit=crop"
+        imageUrl: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?q=80&w=400&auto=format&fit=crop"
       },
       {
         slug: "radiology-technician",
@@ -337,7 +337,7 @@ export class MemStorage implements IStorage {
           "Opportunities in mobile imaging services",
           "Career advancement to chief technologist"
         ],
-        imageUrl: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?q=80&w=1469&auto=format&fit=crop"
+        imageUrl: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?q=80&w=400&auto=format&fit=crop"
       },
       {
         slug: "optometry",
@@ -356,7 +356,7 @@ export class MemStorage implements IStorage {
           "Private practice establishment",
           "Specialization in contact lens fitting"
         ],
-        imageUrl: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?q=80&w=1470&auto=format&fit=crop"
+        imageUrl: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?q=80&w=400&auto=format&fit=crop"
       },
       {
         slug: "sanitary-health-inspector",
@@ -375,7 +375,7 @@ export class MemStorage implements IStorage {
           "Environmental health consultant",
           "Career in municipal corporations"
         ],
-        imageUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?q=80&w=1470&auto=format&fit=crop"
+        imageUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?q=80&w=400&auto=format&fit=crop"
       },
       {
         slug: "dental-health-technician",
@@ -394,7 +394,7 @@ export class MemStorage implements IStorage {
           "Public health dental programs",
           "Career advancement to dental hygienist"
         ],
-        imageUrl: "https://images.unsplash.com/photo-1606811841689-23dfdb7ee46b?q=80&w=1374&auto=format&fit=crop"
+        imageUrl: "https://images.unsplash.com/photo-1606811841689-23dfdb7ee46b?q=80&w=400&auto=format&fit=crop"
       }
     ];
     
