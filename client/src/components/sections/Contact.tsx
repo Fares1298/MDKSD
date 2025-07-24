@@ -3,12 +3,14 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMapMarkerAlt, faClock, faEnvelope, faPhone, faDirections, faUser, faMobile, faComment } from "@fortawesome/free-solid-svg-icons";
+import { faMapMarkerAlt, faClock, faEnvelope, faPhone, faDirections, faUser, faMobile, faComment, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 
@@ -24,6 +26,8 @@ type ContactFormValues = z.infer<typeof contactFormSchema>;
 
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isTermsOpen, setIsTermsOpen] = useState(false);
+  const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
   const { toast } = useToast();
   
   const form = useForm<ContactFormValues>({
@@ -179,9 +183,174 @@ export default function Contact() {
                     <div className="space-y-1 leading-none">
                       <FormLabel className="text-sm text-gray-700">
                         By clicking send message,I agree to our{" "}
-                        <span className="text-[#172f4f] hover:underline cursor-pointer">Terms & Condition</span>
+                        <Dialog open={isTermsOpen} onOpenChange={setIsTermsOpen}>
+                          <DialogTrigger asChild>
+                            <span className="text-[#172f4f] hover:underline cursor-pointer font-medium">
+                              Terms & Condition
+                            </span>
+                          </DialogTrigger>
+                          <DialogContent className="max-w-4xl max-h-[80vh] p-0">
+                            <DialogHeader className="p-6 pb-4">
+                              <DialogTitle className="text-[#172f4f] text-xl font-bold">
+                                Terms & Conditions
+                              </DialogTitle>
+                            </DialogHeader>
+                            <ScrollArea className="h-[60vh] px-6 pb-6">
+                              <div className="space-y-4 text-sm text-gray-700">
+                                <div>
+                                  <h3 className="font-semibold text-[#172f4f] mb-2">1. Acceptance of Terms</h3>
+                                  <p>By accessing and using the services of Matoshree Dr Kanchan Shantilalji Desarda Mahavidyalya, you agree to comply with and be bound by these terms and conditions.</p>
+                                </div>
+                                
+                                <div>
+                                  <h3 className="font-semibold text-[#172f4f] mb-2">2. Educational Services</h3>
+                                  <p>Our institution provides nursing and paramedical education programs as approved by relevant regulatory authorities. All courses are subject to approval from respective boards and councils.</p>
+                                </div>
+                                
+                                <div>
+                                  <h3 className="font-semibold text-[#172f4f] mb-2">3. Admission Requirements</h3>
+                                  <p>Admission to our programs is subject to meeting eligibility criteria, document verification, and availability of seats. The institution reserves the right to verify all submitted documents and may cancel admission if any information is found to be false or misleading.</p>
+                                </div>
+                                
+                                <div>
+                                  <h3 className="font-semibold text-[#172f4f] mb-2">4. Fees and Payment</h3>
+                                  <p>All fees must be paid as per the schedule provided. Fee structure may change from time to time. Refund of fees will be governed by the institution's refund policy and applicable regulations.</p>
+                                </div>
+                                
+                                <div>
+                                  <h3 className="font-semibold text-[#172f4f] mb-2">5. Academic Standards</h3>
+                                  <p>Students are expected to maintain academic standards and follow the code of conduct. The institution reserves the right to take disciplinary action against students who violate academic integrity or institutional policies.</p>
+                                </div>
+                                
+                                <div>
+                                  <h3 className="font-semibold text-[#172f4f] mb-2">6. Attendance Requirements</h3>
+                                  <p>Students must maintain minimum attendance as required by the respective regulatory bodies. Failure to meet attendance requirements may result in debarment from examinations.</p>
+                                </div>
+                                
+                                <div>
+                                  <h3 className="font-semibold text-[#172f4f] mb-2">7. Communication Consent</h3>
+                                  <p>By providing your contact details, you consent to receive communications from the institution regarding academic matters, events, and institutional updates through SMS, email, or other electronic means.</p>
+                                </div>
+                                
+                                <div>
+                                  <h3 className="font-semibold text-[#172f4f] mb-2">8. Limitation of Liability</h3>
+                                  <p>The institution shall not be liable for any indirect, incidental, or consequential damages arising from the use of our services or website.</p>
+                                </div>
+                                
+                                <div>
+                                  <h3 className="font-semibold text-[#172f4f] mb-2">9. Modifications</h3>
+                                  <p>The institution reserves the right to modify these terms and conditions at any time. Updated terms will be posted on our website and will be effective immediately.</p>
+                                </div>
+                                
+                                <div>
+                                  <h3 className="font-semibold text-[#172f4f] mb-2">10. Governing Law</h3>
+                                  <p>These terms and conditions are governed by the laws of India and subject to the jurisdiction of courts in Sambhajinagar (Aurangabad), Maharashtra.</p>
+                                </div>
+                                
+                                <div className="border-t pt-4 mt-6">
+                                  <p className="text-xs text-gray-500">
+                                    Last updated: January 2025<br />
+                                    For any queries regarding these terms, please contact us at mdksdinstitute@gmail.com
+                                  </p>
+                                </div>
+                              </div>
+                            </ScrollArea>
+                          </DialogContent>
+                        </Dialog>
                         {" "}and{" "}
-                        <span className="text-[#172f4f] hover:underline cursor-pointer">Privacy Policy</span>
+                        <Dialog open={isPrivacyOpen} onOpenChange={setIsPrivacyOpen}>
+                          <DialogTrigger asChild>
+                            <span className="text-[#172f4f] hover:underline cursor-pointer font-medium">
+                              Privacy Policy
+                            </span>
+                          </DialogTrigger>
+                          <DialogContent className="max-w-4xl max-h-[80vh] p-0">
+                            <DialogHeader className="p-6 pb-4">
+                              <DialogTitle className="text-[#172f4f] text-xl font-bold">
+                                Privacy Policy
+                              </DialogTitle>
+                            </DialogHeader>
+                            <ScrollArea className="h-[60vh] px-6 pb-6">
+                              <div className="space-y-4 text-sm text-gray-700">
+                                <div>
+                                  <h3 className="font-semibold text-[#172f4f] mb-2">1. Information We Collect</h3>
+                                  <p>We collect personal information including name, contact details, educational background, and other relevant information necessary for admission and academic purposes.</p>
+                                </div>
+                                
+                                <div>
+                                  <h3 className="font-semibold text-[#172f4f] mb-2">2. How We Use Your Information</h3>
+                                  <ul className="list-disc list-inside space-y-1 ml-4">
+                                    <li>Processing admissions and maintaining student records</li>
+                                    <li>Academic administration and course delivery</li>
+                                    <li>Communication regarding academic matters and institutional updates</li>
+                                    <li>Compliance with regulatory requirements</li>
+                                    <li>Improving our educational services</li>
+                                  </ul>
+                                </div>
+                                
+                                <div>
+                                  <h3 className="font-semibold text-[#172f4f] mb-2">3. Information Sharing</h3>
+                                  <p>We may share your information with:</p>
+                                  <ul className="list-disc list-inside space-y-1 ml-4">
+                                    <li>Regulatory bodies and examination boards as required</li>
+                                    <li>Affiliated hospitals and clinical training partners</li>
+                                    <li>Third-party service providers who assist in our operations</li>
+                                    <li>Legal authorities when required by law</li>
+                                  </ul>
+                                </div>
+                                
+                                <div>
+                                  <h3 className="font-semibold text-[#172f4f] mb-2">4. Data Security</h3>
+                                  <p>We implement appropriate security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.</p>
+                                </div>
+                                
+                                <div>
+                                  <h3 className="font-semibold text-[#172f4f] mb-2">5. Communication Preferences</h3>
+                                  <p>By providing your contact information, you consent to receive educational and administrative communications via SMS, email, phone calls, and other electronic means.</p>
+                                </div>
+                                
+                                <div>
+                                  <h3 className="font-semibold text-[#172f4f] mb-2">6. Data Retention</h3>
+                                  <p>We retain your personal information for as long as necessary to fulfill the purposes outlined in this policy and as required by applicable laws and regulations.</p>
+                                </div>
+                                
+                                <div>
+                                  <h3 className="font-semibold text-[#172f4f] mb-2">7. Your Rights</h3>
+                                  <p>You have the right to:</p>
+                                  <ul className="list-disc list-inside space-y-1 ml-4">
+                                    <li>Access your personal information</li>
+                                    <li>Request correction of inaccurate information</li>
+                                    <li>Request deletion of your information (subject to legal requirements)</li>
+                                    <li>Opt-out of marketing communications</li>
+                                  </ul>
+                                </div>
+                                
+                                <div>
+                                  <h3 className="font-semibold text-[#172f4f] mb-2">8. Cookies and Website Analytics</h3>
+                                  <p>Our website may use cookies and similar technologies to improve user experience and analyze website usage patterns.</p>
+                                </div>
+                                
+                                <div>
+                                  <h3 className="font-semibold text-[#172f4f] mb-2">9. Third-Party Links</h3>
+                                  <p>Our website may contain links to third-party websites. We are not responsible for the privacy practices of these external sites.</p>
+                                </div>
+                                
+                                <div>
+                                  <h3 className="font-semibold text-[#172f4f] mb-2">10. Policy Updates</h3>
+                                  <p>We may update this privacy policy from time to time. Changes will be posted on our website with the updated date.</p>
+                                </div>
+                                
+                                <div className="border-t pt-4 mt-6">
+                                  <p className="text-xs text-gray-500">
+                                    Last updated: January 2025<br />
+                                    For privacy-related queries, contact us at mdksdinstitute@gmail.com<br />
+                                    Address: Behind Bibika Maqbara, Hanuman Tekdi Jawal, Pahadsingpura, Sambhajinagar (Aurangabad), Maharashtra
+                                  </p>
+                                </div>
+                              </div>
+                            </ScrollArea>
+                          </DialogContent>
+                        </Dialog>
                         {" "}and I am giving my consent to receive updates through SMS/Email/RCS.
                       </FormLabel>
                       <FormMessage />

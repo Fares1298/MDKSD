@@ -39,6 +39,22 @@ A modern, responsive web application for Matoshree Dr Kanchan Shantilalji Desard
 - Made navbar logo clickable to return to homepage
 - Fixed "Apply Now" button to work from any page, directing to contact section
 
+### "Get in Touch" Section Redesign
+- Replaced "Contact Us" with modern "Get in touch" section following provided design
+- Updated form layout with side-by-side "Your Name" and "Mobile No." fields
+- Added comprehensive form fields: name, mobile, email, and comment with appropriate icons
+- Implemented clickable Terms & Conditions and Privacy Policy with modal popups
+- Added scrollable content in modals with comprehensive legal text
+- Updated backend schema to handle mobile number and consent fields
+- Applied college color theme (blue #172f4f and orange #f4743e) throughout
+
+### Performance Optimizations
+- Reduced image sizes from 1400-1600px to 400px for faster loading
+- Added lazy loading for course images to improve initial page load
+- Fixed CSS import order to eliminate warnings
+- Enhanced React Query caching with stale time configuration
+- Added skeleton loading states for better perceived performance
+
 ### UI Enhancements
 - Course cards now feature background images with white gradient overlays
 - Improved course card layout with image header, title positioning, and content organization
