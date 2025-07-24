@@ -54,7 +54,8 @@ A modern, responsive web application for Matoshree Dr Kanchan Shantilalji Desard
 - Added "Send via WhatsApp" primary button and "Direct Chat" secondary button
 - Included WhatsApp contact options in quick contact section
 - Messages formatted with inquiry details, timestamp, and consent status
-- Uses college WhatsApp numbers: +91 94051 09103 and +91 88308 38903
+- Primary WhatsApp number: +91 88308 38903 (all form replies and direct chat)
+- Secondary contact number: +91 94051 09103 (general contact only)
 
 ### Performance Optimizations
 - Reduced image sizes from 1400-1600px to 400px for faster loading

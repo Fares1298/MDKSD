@@ -59,8 +59,8 @@ export default function Contact() {
 *Consent:* ${data.consent ? 'Given' : 'Not given'}
 *Date:* ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}`;
 
-      // WhatsApp Business API URL (replace with your WhatsApp number)
-      const whatsappNumber = "919405109103"; // Your college's WhatsApp number
+      // WhatsApp Business API URL
+      const whatsappNumber = "918830838903"; // Your college's primary WhatsApp number
       const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
       
       // Open WhatsApp in new tab
@@ -397,7 +397,7 @@ export default function Contact() {
                 <Button 
                   type="button"
                   onClick={() => {
-                    const whatsappNumber = "919405109103";
+                    const whatsappNumber = "918830838903";
                     const whatsappURL = `https://wa.me/${whatsappNumber}`;
                     window.open(whatsappURL, '_blank');
                   }}
@@ -514,21 +514,21 @@ export default function Contact() {
                 <div>
                   <p className="font-medium text-[#172f4f]">WhatsApp</p>
                   <a 
-                    href="https://wa.me/919405109103" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-[#25D366] hover:underline"
-                  >
-                    +91 94051 09103
-                  </a>
-                  <br />
-                  <a 
                     href="https://wa.me/918830838903" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-[#25D366] hover:underline"
+                    className="text-[#25D366] hover:underline font-medium"
                   >
-                    +91 88308 38903
+                    +91 88308 38903 (Primary)
+                  </a>
+                  <br />
+                  <a 
+                    href="https://wa.me/919405109103" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-[#25D366] hover:underline text-sm"
+                  >
+                    +91 94051 09103
                   </a>
                 </div>
               </div>
