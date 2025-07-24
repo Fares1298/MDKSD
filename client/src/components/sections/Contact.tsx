@@ -46,29 +46,19 @@ export default function Contact() {
     setIsSubmitting(true);
     
     try {
-      // Save to database
-      await apiRequest("POST", "/api/contact", data);
+      // Send both to database and WhatsApp via API
+      const response = await apiRequest("POST", "/api/contact", data);
+      const responseData = await response.json();
       
-      // Send to WhatsApp
-      const whatsappMessage = `*New Inquiry from College Website*
-      
-*Name:* ${data.name}
-*Mobile:* ${data.mobile}
-*Email:* ${data.email}
-*Message:* ${data.message}
-*Consent:* ${data.consent ? 'Given' : 'Not given'}
-*Date:* ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}`;
-
-      // WhatsApp Business API URL
-      const whatsappNumber = "918830838903"; // Your college's primary WhatsApp number
-      const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
-      
-      // Open WhatsApp in new tab
-      window.open(whatsappURL, '_blank');
+      // Automatically open WhatsApp with the pre-filled message
+      if (responseData.whatsapp && responseData.whatsapp.url) {
+        // Open WhatsApp in a new tab automatically
+        window.open(responseData.whatsapp.url, '_blank');
+      }
       
       toast({
-        title: "Message sent!",
-        description: "Your inquiry has been forwarded to WhatsApp. We'll get back to you soon.",
+        title: "Message sent successfully!",
+        description: "Your inquiry has been sent directly to our WhatsApp. We'll get back to you soon.",
         variant: "default",
       });
       
