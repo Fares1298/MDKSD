@@ -21,15 +21,19 @@ export type User = typeof users.$inferSelect;
 export const contactSubmissions = pgTable("contact_submissions", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
+  mobile: text("mobile").notNull(),
   email: text("email").notNull(),
   message: text("message").notNull(),
+  consent: boolean("consent").notNull().default(false),
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });
 
 export const contactSchema = createInsertSchema(contactSubmissions).pick({
   name: true,
+  mobile: true,
   email: true,
   message: true,
+  consent: true,
 });
 
 export type InsertContactSubmission = z.infer<typeof contactSchema>;

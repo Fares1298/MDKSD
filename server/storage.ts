@@ -73,8 +73,12 @@ export class MemStorage implements IStorage {
     const timestamp = new Date();
     
     const submission: ContactSubmission = {
-      ...insertSubmission,
       id,
+      name: insertSubmission.name,
+      mobile: insertSubmission.mobile,
+      email: insertSubmission.email,
+      message: insertSubmission.message,
+      consent: insertSubmission.consent ?? false,
       createdAt: timestamp
     };
     

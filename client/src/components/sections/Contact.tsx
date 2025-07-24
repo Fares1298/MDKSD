@@ -3,18 +3,21 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMapMarkerAlt, faClock, faEnvelope, faPhone, faDirections } from "@fortawesome/free-solid-svg-icons";
+import { faMapMarkerAlt, faClock, faEnvelope, faPhone, faDirections, faUser, faMobile, faComment } from "@fortawesome/free-solid-svg-icons";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 
 const contactFormSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
+  mobile: z.string().min(10, { message: "Mobile number must be at least 10 digits." }),
   email: z.string().email({ message: "Please enter a valid email address." }),
   message: z.string().min(10, { message: "Message must be at least 10 characters." }),
+  consent: z.boolean().refine(val => val === true, { message: "You must agree to the terms and conditions." }),
 });
 
 type ContactFormValues = z.infer<typeof contactFormSchema>;
@@ -27,8 +30,10 @@ export default function Contact() {
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
       name: "",
+      mobile: "",
       email: "",
       message: "",
+      consent: false,
     },
   });
 
@@ -57,17 +62,150 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="font-heading font-bold text-3xl md:text-4xl text-[#1d3557] mb-4">Contact Us</h2>
-          <p className="text-[#457b9d] max-w-2xl mx-auto">
-            Have questions? We're here to help you take the next step in your healthcare education journey.
-          </p>
+    <section id="contact" className="py-20 bg-[#f1faff]">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
+          <h2 className="font-heading font-bold text-3xl md:text-4xl text-[#172f4f] mb-8 text-center">Get in touch !</h2>
+          
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                {/* Your Name */}
+                <div>
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-[#172f4f] font-medium">Your Name:</FormLabel>
+                        <FormControl>
+                          <div className="relative">
+                            <FontAwesomeIcon icon={faUser} className="absolute left-3 top-3 text-gray-400" />
+                            <Input 
+                              placeholder="Name :" 
+                              className="pl-10 border-gray-300 focus:border-[#172f4f] focus:ring-[#172f4f]" 
+                              {...field} 
+                            />
+                          </div>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                {/* Mobile No */}
+                <div>
+                  <FormField
+                    control={form.control}
+                    name="mobile"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-[#172f4f] font-medium">Mobile No.:</FormLabel>
+                        <FormControl>
+                          <div className="relative">
+                            <FontAwesomeIcon icon={faMobile} className="absolute left-3 top-3 text-gray-400" />
+                            <Input 
+                              placeholder="Mobile No. :" 
+                              className="pl-10 border-gray-300 focus:border-[#172f4f] focus:ring-[#172f4f]" 
+                              {...field} 
+                            />
+                          </div>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+              </div>
+
+              {/* Your Email */}
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-[#172f4f] font-medium">Your Email:</FormLabel>
+                    <FormControl>
+                      <div className="relative">
+                        <FontAwesomeIcon icon={faEnvelope} className="absolute left-3 top-3 text-gray-400" />
+                        <Input 
+                          placeholder="Email :" 
+                          className="pl-10 border-gray-300 focus:border-[#172f4f] focus:ring-[#172f4f]" 
+                          {...field} 
+                        />
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {/* Your Comment */}
+              <FormField
+                control={form.control}
+                name="message"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-[#172f4f] font-medium">Your Comment:</FormLabel>
+                    <FormControl>
+                      <div className="relative">
+                        <FontAwesomeIcon icon={faComment} className="absolute left-3 top-3 text-gray-400" />
+                        <Textarea 
+                          placeholder="Message :" 
+                          className="pl-10 pt-10 min-h-[120px] border-gray-300 focus:border-[#172f4f] focus:ring-[#172f4f] resize-none" 
+                          {...field} 
+                        />
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {/* Terms and Conditions */}
+              <FormField
+                control={form.control}
+                name="consent"
+                render={({ field }) => (
+                  <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                    <FormControl>
+                      <Checkbox
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                        className="border-[#172f4f] data-[state=checked]:bg-[#172f4f]"
+                      />
+                    </FormControl>
+                    <div className="space-y-1 leading-none">
+                      <FormLabel className="text-sm text-gray-700">
+                        By clicking send message,I agree to our{" "}
+                        <span className="text-[#172f4f] hover:underline cursor-pointer">Terms & Condition</span>
+                        {" "}and{" "}
+                        <span className="text-[#172f4f] hover:underline cursor-pointer">Privacy Policy</span>
+                        {" "}and I am giving my consent to receive updates through SMS/Email/RCS.
+                      </FormLabel>
+                      <FormMessage />
+                    </div>
+                  </FormItem>
+                )}
+              />
+
+              {/* Submit Button */}
+              <div className="pt-4">
+                <Button 
+                  type="submit" 
+                  disabled={isSubmitting}
+                  className="bg-[#172f4f] hover:bg-[#0b1a2f] text-white font-medium py-3 px-8 rounded-lg transition-colors duration-300"
+                >
+                  {isSubmitting ? "Sending..." : "Send Message"}
+                </Button>
+              </div>
+            </form>
+          </Form>
         </div>
-        
-        <div className="grid md:grid-cols-2 gap-12">
-          {/* Contact Info */}
+
+        {/* Contact Info Section */}
+        <div className="mt-12 grid md:grid-cols-2 gap-8">
           <div>
             <div className="bg-[#f1faee] p-8 rounded-lg shadow-md mb-8">
               <h3 className="font-heading font-semibold text-2xl text-[#1d3557] mb-6">Visit Us</h3>
@@ -144,76 +282,47 @@ export default function Contact() {
             </div>
           </div>
           
-          {/* Contact Form */}
-          <div id="apply" className="bg-[#f1faee] p-8 rounded-lg shadow-md">
-            <h3 className="font-heading font-semibold text-2xl text-[#1d3557] mb-6">Send Us a Message</h3>
+          {/* Quick Contact Info */}
+          <div className="bg-[#f1faee] p-8 rounded-lg shadow-md">
+            <h3 className="font-heading font-semibold text-2xl text-[#172f4f] mb-6">Quick Contact</h3>
             
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-[#457b9d]">Full Name</FormLabel>
-                      <FormControl>
-                        <Input 
-                          placeholder="Your Name" 
-                          className="px-4 py-3 border-gray-300 focus:ring-[#3c6e71] focus:border-[#3c6e71]" 
-                          {...field} 
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-[#457b9d]">Email Address</FormLabel>
-                      <FormControl>
-                        <Input 
-                          placeholder="you@example.com" 
-                          className="px-4 py-3 border-gray-300 focus:ring-[#3c6e71] focus:border-[#3c6e71]" 
-                          {...field} 
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                
-                <FormField
-                  control={form.control}
-                  name="message"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-[#457b9d]">Message</FormLabel>
-                      <FormControl>
-                        <Textarea 
-                          placeholder="Your questions or comments..." 
-                          className="px-4 py-3 border-gray-300 focus:ring-[#3c6e71] focus:border-[#3c6e71]"
-                          rows={4}
-                          {...field} 
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                
-                <Button 
-                  type="submit" 
-                  className="w-full bg-[#e63946] hover:bg-red-700 text-white font-bold py-3 rounded-md transition duration-300"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? "Submitting..." : "Submit & Schedule a Tour"}
-                </Button>
-              </form>
-            </Form>
+            <div className="space-y-4">
+              <div className="flex items-center">
+                <FontAwesomeIcon icon={faPhone} className="text-[#172f4f] mr-3" />
+                <div>
+                  <p className="font-medium text-[#172f4f]">Call Us</p>
+                  <a href="tel:+919405109103" className="text-[#f4743e] hover:underline">
+                    +91 94051 09103
+                  </a>
+                  <br />
+                  <a href="tel:+918830838903" className="text-[#f4743e] hover:underline">
+                    +91 88308 38903
+                  </a>
+                </div>
+              </div>
+              
+              <div className="flex items-center">
+                <FontAwesomeIcon icon={faEnvelope} className="text-[#172f4f] mr-3" />
+                <div>
+                  <p className="font-medium text-[#172f4f]">Email Us</p>
+                  <a href="mailto:mdksdinstitute@gmail.com" className="text-[#f4743e] hover:underline">
+                    mdksdinstitute@gmail.com
+                  </a>
+                </div>
+              </div>
+              
+              <div className="flex items-start">
+                <FontAwesomeIcon icon={faMapMarkerAlt} className="text-[#172f4f] mr-3 mt-1" />
+                <div>
+                  <p className="font-medium text-[#172f4f]">Visit Us</p>
+                  <p className="text-gray-600 text-sm">
+                    Behind Bibika Maqbara, Hanuman Tekdi Jawal, <br />
+                    Pahadsingpura, Sambhajinagar (Aurangabad), <br />
+                    Maharashtra
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
