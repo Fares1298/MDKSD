@@ -205,6 +205,196 @@ export class MemStorage implements IStorage {
           "Further credentials: Advanced Diploma in Laser Therapy, PG Diploma in Medical Aesthetics."
         ],
         imageUrl: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?q=80&w=1335&auto=format&fit=crop"
+      },
+      {
+        slug: "pgdmlt",
+        title: "Postgraduate Diploma in Medical Laboratory Technology (PGDMLT)",
+        duration: "1.5 years",
+        overview: "An advanced postgraduate program for B.Sc graduates focusing on specialized laboratory techniques and management skills in medical diagnostics.",
+        benefits: [
+          "Advanced training in specialized laboratory equipment and techniques",
+          "Management skills for laboratory supervision and quality control",
+          "Research methodology in medical laboratory sciences",
+          "Eligibility for senior laboratory positions"
+        ],
+        futureScope: [
+          "Senior Medical Laboratory Technologist in hospitals and diagnostic centers",
+          "Laboratory supervisor and quality control manager",
+          "Research opportunities in clinical laboratories",
+          "Academic positions in paramedical colleges"
+        ],
+        imageUrl: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?q=80&w=1470&auto=format&fit=crop"
+      },
+      {
+        slug: "xray-technician",
+        title: "X-Ray Technician Course",
+        duration: "1 year",
+        overview: "A specialized one-year program training students in X-ray imaging techniques, radiation safety, and diagnostic imaging procedures.",
+        benefits: [
+          "Hands-on training with modern X-ray equipment",
+          "Understanding of radiation safety protocols",
+          "Patient positioning and imaging techniques",
+          "Government recognized certification"
+        ],
+        futureScope: [
+          "X-Ray Technician in hospitals and diagnostic centers",
+          "Opportunities in mobile X-ray services",
+          "Career advancement to senior imaging roles",
+          "Government and semi-government job opportunities"
+        ],
+        imageUrl: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?q=80&w=1469&auto=format&fit=crop"
+      },
+      {
+        slug: "ct-scan-technician",
+        title: "C.T. Scan Technician Course",
+        duration: "1 year",
+        overview: "A comprehensive program focused on CT imaging technology, cross-sectional anatomy, and advanced diagnostic imaging techniques.",
+        benefits: [
+          "Specialized training in CT scan operations",
+          "Knowledge of cross-sectional anatomy",
+          "Patient care during CT procedures",
+          "High-demand technical skills"
+        ],
+        futureScope: [
+          "CT Scan Technician in hospitals and imaging centers",
+          "Specialized roles in emergency departments",
+          "Career progression to lead technician positions",
+          "Opportunities in private diagnostic chains"
+        ],
+        imageUrl: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?q=80&w=1470&auto=format&fit=crop"
+      },
+      {
+        slug: "ecg-technician",
+        title: "E.C.G Technician Course",
+        duration: "1 year",
+        overview: "A focused program on electrocardiography techniques, heart rhythm analysis, and cardiovascular diagnostic procedures.",
+        benefits: [
+          "Expertise in ECG machine operation and maintenance",
+          "Understanding of cardiac rhythms and abnormalities",
+          "Patient preparation and procedure techniques",
+          "Essential healthcare skill with high demand"
+        ],
+        futureScope: [
+          "ECG Technician in hospitals and cardiac care units",
+          "Opportunities in cardiac diagnostic centers",
+          "Roles in emergency medical services",
+          "Career advancement to cardiac care specialization"
+        ],
+        imageUrl: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?q=80&w=1469&auto=format&fit=crop"
+      },
+      {
+        slug: "ot-technician",
+        title: "O.T. Technician (Operation Theatre)",
+        duration: "2 years",
+        overview: "A comprehensive two-year program training students in operation theatre procedures, surgical assistance, and sterile techniques.",
+        benefits: [
+          "Training in surgical instruments and equipment",
+          "Sterile technique and infection control protocols",
+          "Assistance in various surgical procedures",
+          "Critical healthcare role with job security"
+        ],
+        futureScope: [
+          "Operation Theatre Technician in hospitals",
+          "Surgical assistant roles in specialty departments",
+          "Opportunities in day care surgical centers",
+          "Career advancement to OT supervisor positions"
+        ],
+        imageUrl: "https://images.unsplash.com/photo-1551190822-a9333d879b1f?q=80&w=1470&auto=format&fit=crop"
+      },
+      {
+        slug: "pg-radiology",
+        title: "P.G. Radiology",
+        duration: "1.5 years",
+        overview: "An advanced postgraduate program for B.Sc Physics graduates focusing on advanced radiological techniques and imaging technologies.",
+        benefits: [
+          "Advanced knowledge of radiological physics",
+          "Training in modern imaging modalities",
+          "Radiation safety and protection protocols",
+          "Eligibility for senior radiology positions"
+        ],
+        futureScope: [
+          "Senior Radiology Technologist in hospitals",
+          "Medical Physics roles in radiation therapy",
+          "Quality assurance in imaging departments",
+          "Research opportunities in medical imaging"
+        ],
+        imageUrl: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?q=80&w=1470&auto=format&fit=crop"
+      },
+      {
+        slug: "radiology-technician",
+        title: "Radiology Technician",
+        duration: "2 years",
+        overview: "A comprehensive program covering all aspects of diagnostic imaging including X-ray, ultrasound, and advanced imaging techniques.",
+        benefits: [
+          "Training in multiple imaging modalities",
+          "Patient care and safety protocols",
+          "Equipment operation and maintenance",
+          "Broad career opportunities in imaging"
+        ],
+        futureScope: [
+          "Radiology Technician in hospitals and diagnostic centers",
+          "Specialization in specific imaging modalities",
+          "Opportunities in mobile imaging services",
+          "Career advancement to chief technologist"
+        ],
+        imageUrl: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?q=80&w=1469&auto=format&fit=crop"
+      },
+      {
+        slug: "optometry",
+        title: "Diploma in Optometry",
+        duration: "2 years",
+        overview: "A specialized program focused on eye care, vision testing, and optical dispensing to prepare qualified optometrists.",
+        benefits: [
+          "Comprehensive eye examination techniques",
+          "Vision testing and correction methods",
+          "Optical dispensing and lens fitting",
+          "Growing field with increasing demand"
+        ],
+        futureScope: [
+          "Optometrist in eye care clinics and hospitals",
+          "Opportunities in optical retail chains",
+          "Private practice establishment",
+          "Specialization in contact lens fitting"
+        ],
+        imageUrl: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?q=80&w=1470&auto=format&fit=crop"
+      },
+      {
+        slug: "sanitary-health-inspector",
+        title: "Sanitary Health Inspector Course",
+        duration: "1 year",
+        overview: "A program training students in public health inspection, sanitation management, and community health monitoring.",
+        benefits: [
+          "Knowledge of public health and sanitation laws",
+          "Environmental health assessment skills",
+          "Community health monitoring techniques",
+          "Government job opportunities"
+        ],
+        futureScope: [
+          "Health Inspector in government departments",
+          "Public health officer roles",
+          "Environmental health consultant",
+          "Career in municipal corporations"
+        ],
+        imageUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?q=80&w=1470&auto=format&fit=crop"
+      },
+      {
+        slug: "dental-health-technician",
+        title: "Dental Health Technician",
+        duration: "2 years",
+        overview: "A comprehensive program focusing on dental care assistance, oral health education, and dental procedure support.",
+        benefits: [
+          "Training in dental procedures and equipment",
+          "Oral health education and prevention",
+          "Patient care in dental settings",
+          "Growing demand in dental healthcare"
+        ],
+        futureScope: [
+          "Dental Assistant in dental clinics",
+          "Opportunities in dental hospitals",
+          "Public health dental programs",
+          "Career advancement to dental hygienist"
+        ],
+        imageUrl: "https://images.unsplash.com/photo-1606811841689-23dfdb7ee46b?q=80&w=1374&auto=format&fit=crop"
       }
     ];
     

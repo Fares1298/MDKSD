@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSpinner, faUserNurse, faStethoscope, faFlask, faHeartbeat, faPrescriptionBottleMedical, faSpa } from "@fortawesome/free-solid-svg-icons";
+import { faSpinner, faUserNurse, faStethoscope, faFlask, faHeartbeat, faPrescriptionBottleMedical, faSpa, faXRay, faMicroscope, faEye, faShieldAlt, faTooth } from "@fortawesome/free-solid-svg-icons";
 import { Helmet } from "react-helmet-async";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -19,7 +19,17 @@ const courseIcons: Record<string, IconDefinition> = {
   "physiotherapy": faHeartbeat,
   "dpharm": faPrescriptionBottleMedical,
   "paramedical-cosmetology": faSpa,
-  "dccn": faUserNurse
+  "dccn": faUserNurse,
+  "pgdmlt": faMicroscope,
+  "xray-technician": faXRay,
+  "ct-scan-technician": faXRay,
+  "ecg-technician": faHeartbeat,
+  "ot-technician": faStethoscope,
+  "pg-radiology": faXRay,
+  "radiology-technician": faXRay,
+  "optometry": faEye,
+  "sanitary-health-inspector": faShieldAlt,
+  "dental-health-technician": faTooth
 };
 
 export default function Courses() {
