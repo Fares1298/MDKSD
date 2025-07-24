@@ -79,15 +79,19 @@ export default function Programs() {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* First row: 3 programs */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
           {programs.slice(0, 3).map((program) => (
             <ProgramCard key={program.id} program={program} />
           ))}
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+        {/* Second row: 2 programs centered */}
+        <div className="flex flex-wrap justify-center gap-8">
           {programs.slice(3, 5).map((program) => (
-            <ProgramCard key={program.id} program={program} />
+            <div key={program.id} className="w-full md:w-80 lg:w-96">
+              <ProgramCard program={program} />
+            </div>
           ))}
         </div>
         
