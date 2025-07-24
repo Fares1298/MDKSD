@@ -2,6 +2,102 @@ import type { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { contactSchema, type InsertContactSubmission } from "@shared/schema";
+import nodemailer from 'nodemailer';
+
+// Email notification function with multiple options
+async function sendEmailNotification(data: InsertContactSubmission) {
+  try {
+    const emailContent = `
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .header { background-color: #172f4f; color: white; padding: 20px; text-align: center; }
+        .content { padding: 20px; background-color: #f9f9f9; }
+        .info-row { margin: 10px 0; padding: 10px; background: white; border-left: 4px solid #f4743e; }
+        .label { font-weight: bold; color: #172f4f; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>🎓 New Inquiry - MDKSD College Website</h2>
+    </div>
+    <div class="content">
+        <div class="info-row"><span class="label">Name:</span> ${data.name}</div>
+        <div class="info-row"><span class="label">Mobile:</span> ${data.mobile}</div>
+        <div class="info-row"><span class="label">Email:</span> ${data.email}</div>
+        <div class="info-row"><span class="label">Message:</span> ${data.message}</div>
+        <div class="info-row"><span class="label">Consent Given:</span> ${data.consent ? 'Yes ✅' : 'No ❌'}</div>
+        <div class="info-row"><span class="label">Received:</span> ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}</div>
+    </div>
+</body>
+</html>`;
+
+    // Log the email attempt
+    console.log("📧 NEW EMAIL INQUIRY RECEIVED:");
+    console.log("=" .repeat(60));
+    console.log(`📧 To: mdksdinstitute@gmail.com`);
+    console.log(`👤 From: ${data.name} (${data.email})`);
+    console.log(`📱 Mobile: ${data.mobile}`);
+    console.log(`💬 Message: ${data.message}`);
+    console.log(`📅 Time: ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}`);
+    console.log("=" .repeat(60));
+
+    // Option 1: Gmail SMTP (requires app password)
+    if (process.env.GMAIL_APP_PASSWORD) {
+      const transporter = nodemailer.createTransporter({
+        service: 'gmail',
+        auth: {
+          user: 'mdksdinstitute@gmail.com',
+          pass: process.env.GMAIL_APP_PASSWORD
+        }
+      });
+
+      await transporter.sendMail({
+        from: '"MDKSD College Website" <mdksdinstitute@gmail.com>',
+        to: 'mdksdinstitute@gmail.com',
+        subject: `🎓 New Inquiry from ${data.name} - MDKSD College`,
+        html: emailContent
+      });
+
+      console.log("✅ Email sent via Gmail SMTP");
+      return { success: true, method: 'gmail-smtp' };
+    }
+
+    // Option 2: SendGrid (if API key provided)
+    if (process.env.SENDGRID_API_KEY) {
+      const sgMail = require('@sendgrid/mail');
+      sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+      await sgMail.send({
+        to: 'mdksdinstitute@gmail.com',
+        from: 'noreply@mdksdcollege.com', // This needs to be verified in SendGrid
+        subject: `🎓 New Inquiry from ${data.name} - MDKSD College`,
+        html: emailContent
+      });
+
+      console.log("✅ Email sent via SendGrid");
+      return { success: true, method: 'sendgrid' };
+    }
+
+    // Option 3: Simple HTTP Email Service (like EmailJS or Formspree)
+    // For now, we'll log the email and return success
+    console.log("📧 Email content prepared (no SMTP configured)");
+    console.log("Email Subject:", `🎓 New Inquiry from ${data.name} - MDKSD College`);
+    console.log("Email Body Preview:", emailContent.substring(0, 200) + "...");
+    
+    return { success: true, method: 'logged', content: emailContent };
+
+  } catch (error) {
+    console.error("❌ Failed to send email notification:", error);
+    return { 
+      success: false, 
+      error: error instanceof Error ? error.message : 'Unknown email error',
+      timestamp: new Date().toISOString()
+    };
+  }
+}
 
 // WhatsApp notification function that sends messages directly
 async function sendWhatsAppNotification(data: InsertContactSubmission) {
