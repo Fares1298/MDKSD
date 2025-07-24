@@ -84,22 +84,45 @@ async function sendEmailNotification(data: InsertContactSubmission) {
     </body>
     </html>`;
 
-    // Send email via SendGrid
-    const emailData = {
-      to: 'mdksdinstitute@gmail.com',
-      from: {
-        email: 'noreply@mdksdcollege.edu',
-        name: 'MDKSD College Website'
-      },
-      subject: `🎓 New Inquiry from ${data.name} - MDKSD College`,
-      html: emailContent,
-      text: `New inquiry from ${data.name}\nMobile: ${data.mobile}\nEmail: ${data.email}\nMessage: ${data.message}\nConsent: ${data.consent ? 'Given' : 'Not given'}\nReceived: ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}`
-    };
+    // Try multiple sender configurations for SendGrid
+    const senderConfigurations = [
+      // Option 1: SendGrid's sandbox domain for testing
+      'test@example.com',
+      // Option 2: Alternative test email
+      'noreply@example.com', 
+      // Option 3: Use the account email (if verified)
+      'mdksdinstitute@gmail.com'
+    ];
 
-    await sgMail.send(emailData);
+    let lastError = null;
     
-    console.log("✅ Email sent successfully via SendGrid");
-    return { success: true, method: 'sendgrid', messageId: `email_${Date.now()}` };
+    for (const fromEmail of senderConfigurations) {
+      try {
+        const emailData = {
+          to: 'mdksdinstitute@gmail.com',
+          from: {
+            email: fromEmail,
+            name: 'MDKSD College Website'
+          },
+          subject: `🎓 New Inquiry from ${data.name} - MDKSD College`,
+          html: emailContent,
+          text: `New inquiry from ${data.name}\nMobile: ${data.mobile}\nEmail: ${data.email}\nMessage: ${data.message}\nConsent: ${data.consent ? 'Given' : 'Not given'}\nReceived: ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}`
+        };
+
+        await sgMail.send(emailData);
+        
+        console.log(`✅ Email sent successfully via SendGrid using sender: ${fromEmail}`);
+        return { success: true, method: 'sendgrid', messageId: `email_${Date.now()}`, sender: fromEmail };
+        
+      } catch (error: any) {
+        console.log(`❌ Failed to send with sender ${fromEmail}:`, error.message);
+        lastError = error;
+        continue;
+      }
+    }
+    
+    // If all configurations failed, throw the last error
+    throw lastError;
 
   } catch (error) {
     console.error("❌ Failed to send email notification:", error);
