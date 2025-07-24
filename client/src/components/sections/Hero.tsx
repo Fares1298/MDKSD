@@ -1,4 +1,9 @@
 import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
+// Import banner images
+import img1 from "@/assets/banner_photos/30x40.jpg";
+import img2 from "@/assets/banner_photos/WhatsApp Image 2024-11-14 at 1.36.23 PM.jpeg";
+import img3 from "@/assets/banner_photos/DSC_6363.jpg";
 
 interface HeroProps {
   onExploreClick: () => void;
@@ -6,21 +11,37 @@ interface HeroProps {
 }
 
 export default function Hero({ onExploreClick, onContactClick }: HeroProps) {
+  // Slideshow logic
+  const images = [img1, img2, img3];
+  const [current, setCurrent] = useState(0);
+  const [fade, setFade] = useState(true);
+
+  useEffect(() => {
+    const fadeTimeout = setTimeout(() => setFade(false), 3500);
+    const interval = setInterval(() => {
+      setFade(true);
+      setCurrent((prev) => (prev + 1) % images.length);
+      setTimeout(() => setFade(false), 500);
+    }, 4000);
+    return () => {
+      clearInterval(interval);
+      clearTimeout(fadeTimeout);
+    };
+  }, [images.length]);
+
   return (
     <section id="home" className="relative bg-[#0b1a2f] min-h-[600px] flex items-center">
       {/* Overlay */}
       <div className="absolute inset-0 bg-black opacity-50 z-10"></div>
-      
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <img 
-          src="https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=800&q=80" 
-          alt="College campus" 
-          className="w-full h-full object-cover"
+      {/* Background Slideshow */}
+      <div className="absolute inset-0 z-0 transition-opacity duration-700" style={{ opacity: fade ? 1 : 0.85 }}>
+        <img
+          src={images[current]}
+          alt="College campus banner"
+          className="w-full h-full object-cover transition-opacity duration-700"
           loading="eager"
         />
       </div>
-      
       {/* Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 py-24">
         <div className="max-w-3xl">
