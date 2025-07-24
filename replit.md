@@ -54,7 +54,7 @@ A modern, responsive web application for Matoshree Dr Kanchan Shantilalji Desard
 - Added "Send via WhatsApp" primary button and "Direct Chat" secondary button
 - Included WhatsApp contact options in quick contact section
 - Messages formatted with inquiry details, timestamp, and consent status
-- Primary WhatsApp number: +91 88308 38903 (all form replies and direct chat)
+- Primary WhatsApp number: +91 99752 42134 (all form replies and direct chat)
 - Secondary contact number: +91 94051 09103 (general contact only)
 
 ### Performance Optimizations
@@ -115,5 +115,5 @@ The college now offers 15 comprehensive programs:
 - Course cards should be visually appealing with good text visibility
 
 ## Contact Information
-- Phone: 9405109103, 8830838903
+- Phone: 9405109103, 9975242134
 - Address: Behind Bibika Maqbara, Hanuman Tekdi Jawal, Pahadsingpura, Sambhajinagar (Aurangabad), Maharashtra
