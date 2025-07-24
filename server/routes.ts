@@ -105,10 +105,15 @@ async function sendEmailNotification(data: InsertContactSubmission) {
           text: `New inquiry from ${data.name}\nMobile: ${data.mobile}\nEmail: ${data.email}\nMessage: ${data.message}\nConsent: ${data.consent ? 'Given' : 'Not given'}\nReceived: ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}`
         };
 
-        await sgMail.send(emailData);
+        const result = await sgMail.send(emailData);
         
         console.log(`✅ Email sent successfully via SendGrid using sender: ${fromEmail}`);
-        return { success: true, method: 'sendgrid', messageId: `email_${Date.now()}`, sender: fromEmail };
+        console.log(`📧 SendGrid Response:`, JSON.stringify(result[0], null, 2));
+        console.log(`📧 Message ID:`, result[0].headers['x-message-id']);
+        console.log(`📧 Email delivered to: mdksdinstitute@gmail.com`);
+        console.log(`📧 Check: Gmail inbox, spam folder, promotions tab`);
+        
+        return { success: true, method: 'sendgrid', messageId: result[0].headers['x-message-id'] || `email_${Date.now()}`, sender: fromEmail };
         
       } catch (error: any) {
         console.log(`❌ Failed to send with sender ${fromEmail}:`, error.message);
