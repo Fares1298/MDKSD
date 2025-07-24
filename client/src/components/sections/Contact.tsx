@@ -4,12 +4,13 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt, faClock, faEnvelope, faPhone, faDirections, faUser, faMobile, faComment, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
@@ -45,11 +46,29 @@ export default function Contact() {
     setIsSubmitting(true);
     
     try {
+      // Save to database
       await apiRequest("POST", "/api/contact", data);
+      
+      // Send to WhatsApp
+      const whatsappMessage = `*New Inquiry from College Website*
+      
+*Name:* ${data.name}
+*Mobile:* ${data.mobile}
+*Email:* ${data.email}
+*Message:* ${data.message}
+*Consent:* ${data.consent ? 'Given' : 'Not given'}
+*Date:* ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}`;
+
+      // WhatsApp Business API URL (replace with your WhatsApp number)
+      const whatsappNumber = "919405109103"; // Your college's WhatsApp number
+      const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+      
+      // Open WhatsApp in new tab
+      window.open(whatsappURL, '_blank');
       
       toast({
         title: "Message sent!",
-        description: "We'll get back to you as soon as possible.",
+        description: "Your inquiry has been forwarded to WhatsApp. We'll get back to you soon.",
         variant: "default",
       });
       
@@ -194,6 +213,9 @@ export default function Contact() {
                               <DialogTitle className="text-[#172f4f] text-xl font-bold">
                                 Terms & Conditions
                               </DialogTitle>
+                              <DialogDescription>
+                                Please read our terms and conditions carefully before using our services.
+                              </DialogDescription>
                             </DialogHeader>
                             <ScrollArea className="h-[60vh] px-6 pb-6">
                               <div className="space-y-4 text-sm text-gray-700">
@@ -269,6 +291,9 @@ export default function Contact() {
                               <DialogTitle className="text-[#172f4f] text-xl font-bold">
                                 Privacy Policy
                               </DialogTitle>
+                              <DialogDescription>
+                                Learn how we collect, use, and protect your personal information.
+                              </DialogDescription>
                             </DialogHeader>
                             <ScrollArea className="h-[60vh] px-6 pb-6">
                               <div className="space-y-4 text-sm text-gray-700">
@@ -360,13 +385,27 @@ export default function Contact() {
               />
 
               {/* Submit Button */}
-              <div className="pt-4">
+              <div className="pt-4 flex flex-col sm:flex-row gap-3">
                 <Button 
                   type="submit" 
                   disabled={isSubmitting}
-                  className="bg-[#172f4f] hover:bg-[#0b1a2f] text-white font-medium py-3 px-8 rounded-lg transition-colors duration-300"
+                  className="bg-[#172f4f] hover:bg-[#0b1a2f] text-white font-medium py-3 px-8 rounded-lg transition-colors duration-300 flex-1"
                 >
-                  {isSubmitting ? "Sending..." : "Send Message"}
+                  <FontAwesomeIcon icon={faWhatsapp} className="mr-2" />
+                  {isSubmitting ? "Sending..." : "Send via WhatsApp"}
+                </Button>
+                <Button 
+                  type="button"
+                  onClick={() => {
+                    const whatsappNumber = "919405109103";
+                    const whatsappURL = `https://wa.me/${whatsappNumber}`;
+                    window.open(whatsappURL, '_blank');
+                  }}
+                  variant="outline"
+                  className="border-[#25D366] text-[#25D366] hover:bg-[#25D366] hover:text-white font-medium py-3 px-6 rounded-lg transition-colors duration-300"
+                >
+                  <FontAwesomeIcon icon={faWhatsapp} className="mr-2" />
+                  Direct Chat
                 </Button>
               </div>
             </form>
@@ -465,6 +504,30 @@ export default function Contact() {
                   </a>
                   <br />
                   <a href="tel:+918830838903" className="text-[#f4743e] hover:underline">
+                    +91 88308 38903
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-center">
+                <FontAwesomeIcon icon={faWhatsapp} className="text-[#25D366] mr-3" />
+                <div>
+                  <p className="font-medium text-[#172f4f]">WhatsApp</p>
+                  <a 
+                    href="https://wa.me/919405109103" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-[#25D366] hover:underline"
+                  >
+                    +91 94051 09103
+                  </a>
+                  <br />
+                  <a 
+                    href="https://wa.me/918830838903" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-[#25D366] hover:underline"
+                  >
                     +91 88308 38903
                   </a>
                 </div>
