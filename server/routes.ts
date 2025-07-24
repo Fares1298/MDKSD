@@ -153,7 +153,7 @@ Please respond to this inquiry promptly.`;
     // Log the inquiry for server records
     console.log("📱 NEW WHATSAPP INQUIRY RECEIVED:");
     console.log("=" .repeat(60));
-    console.log(`📞 To: +91 99752 42134`);
+    console.log(`📞 To: +91 88308 38903`);
     console.log(`👤 From: ${data.name} (${data.mobile})`);
     console.log(`📧 Email: ${data.email}`);
     console.log(`💬 Message: ${data.message}`);
@@ -175,7 +175,7 @@ Please respond to this inquiry promptly.`;
     return { 
       success: true, 
       messageId: `msg_${Date.now()}`, 
-      recipient: "919975242134",
+      recipient: "918830838903",
       status: "Message processed and sent to WhatsApp",
       timestamp: new Date().toISOString()
     };

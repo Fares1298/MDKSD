@@ -487,12 +487,12 @@ export default function Contact() {
                 <div className="flex-1">
                   <p className="font-medium text-[#172f4f]">WhatsApp</p>
                   <a 
-                    href="https://wa.me/919975242134" 
+                    href="https://wa.me/918830838903" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="text-[#25D366] hover:underline font-medium"
                   >
-                    +91 99752 42134 (Primary)
+                    +91 88308 38903 (Primary)
                   </a>
                   <br />
                   <a 
@@ -510,7 +510,7 @@ export default function Contact() {
               <div className="mt-6 pt-4 border-t border-gray-200">
                 <Button 
                   onClick={() => {
-                    const whatsappNumber = "919975242134";
+                    const whatsappNumber = "918830838903";
                     const message = "Hello! I'm interested in learning more about the courses at MDKSD College. Could you please provide me with more information?";
                     const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
                     window.open(whatsappURL, '_blank');

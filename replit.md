@@ -50,7 +50,7 @@ A modern, responsive web application for Matoshree Dr Kanchan Shantilalji Desard
 
 ### Dual Notification System (WhatsApp + Email)
 - Integrated dual notification system for comprehensive inquiry management
-- WhatsApp notifications sent to +91 99752 42134 with formatted inquiry details
+- WhatsApp notifications sent to +91 88308 38903 with formatted inquiry details
 - Professional HTML emails sent to mdksdinstitute@gmail.com via SendGrid
 - Both notifications processed simultaneously for immediate alert coverage
 - Messages include full inquiry details, timestamp, and consent status
@@ -116,5 +116,5 @@ The college now offers 15 comprehensive programs:
 - Course cards should be visually appealing with good text visibility
 
 ## Contact Information
-- Phone: 9405109103, 9975242134
+- Phone: 9405109103, 8830838903
 - Address: Behind Bibika Maqbara, Hanuman Tekdi Jawal, Pahadsingpura, Sambhajinagar (Aurangabad), Maharashtra
