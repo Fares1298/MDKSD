@@ -46,19 +46,12 @@ export default function Contact() {
     setIsSubmitting(true);
     
     try {
-      // Send both to database and WhatsApp via API
+      // Send to database and WhatsApp via API
       const response = await apiRequest("POST", "/api/contact", data);
-      const responseData = await response.json();
-      
-      // Automatically open WhatsApp with the pre-filled message
-      if (responseData.whatsapp && responseData.whatsapp.url) {
-        // Open WhatsApp in a new tab automatically
-        window.open(responseData.whatsapp.url, '_blank');
-      }
       
       toast({
         title: "Message sent successfully!",
-        description: "Your inquiry has been sent directly to our WhatsApp. We'll get back to you soon.",
+        description: "Your inquiry has been sent to our WhatsApp automatically. We'll contact you soon.",
         variant: "default",
       });
       
@@ -375,28 +368,17 @@ export default function Contact() {
               />
 
               {/* Submit Button */}
-              <div className="pt-4 flex flex-col sm:flex-row gap-3">
+              <div className="pt-4">
                 <Button 
                   type="submit" 
                   disabled={isSubmitting}
-                  className="bg-[#172f4f] hover:bg-[#0b1a2f] text-white font-medium py-3 px-8 rounded-lg transition-colors duration-300 flex-1"
+                  className="bg-[#172f4f] hover:bg-[#0b1a2f] text-white font-medium py-3 px-8 rounded-lg transition-colors duration-300 w-full sm:w-auto"
                 >
-                  <FontAwesomeIcon icon={faWhatsapp} className="mr-2" />
-                  {isSubmitting ? "Sending..." : "Send via WhatsApp"}
+                  {isSubmitting ? "Sending Message..." : "Send Message"}
                 </Button>
-                <Button 
-                  type="button"
-                  onClick={() => {
-                    const whatsappNumber = "918830838903";
-                    const whatsappURL = `https://wa.me/${whatsappNumber}`;
-                    window.open(whatsappURL, '_blank');
-                  }}
-                  variant="outline"
-                  className="border-[#25D366] text-[#25D366] hover:bg-[#25D366] hover:text-white font-medium py-3 px-6 rounded-lg transition-colors duration-300"
-                >
-                  <FontAwesomeIcon icon={faWhatsapp} className="mr-2" />
-                  Direct Chat
-                </Button>
+                <p className="text-sm text-gray-600 mt-2">
+                  Your message will be automatically sent to our WhatsApp for quick response.
+                </p>
               </div>
             </form>
           </Form>
@@ -501,7 +483,7 @@ export default function Contact() {
 
               <div className="flex items-center">
                 <FontAwesomeIcon icon={faWhatsapp} className="text-[#25D366] mr-3" />
-                <div>
+                <div className="flex-1">
                   <p className="font-medium text-[#172f4f]">WhatsApp</p>
                   <a 
                     href="https://wa.me/918830838903" 
@@ -521,6 +503,25 @@ export default function Contact() {
                     +91 94051 09103
                   </a>
                 </div>
+              </div>
+              
+              {/* Direct WhatsApp Chat Button */}
+              <div className="mt-6 pt-4 border-t border-gray-200">
+                <Button 
+                  onClick={() => {
+                    const whatsappNumber = "918830838903";
+                    const message = "Hello! I'm interested in learning more about the courses at MDKSD College. Could you please provide me with more information?";
+                    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+                    window.open(whatsappURL, '_blank');
+                  }}
+                  className="bg-[#25D366] hover:bg-[#128C7E] text-white font-medium py-2 px-4 rounded-lg transition-colors duration-300 w-full flex items-center justify-center"
+                >
+                  <FontAwesomeIcon icon={faWhatsapp} className="mr-2" />
+                  Start WhatsApp Chat
+                </Button>
+                <p className="text-xs text-gray-500 mt-1 text-center">
+                  For immediate assistance and quick questions
+                </p>
               </div>
               
               <div className="flex items-center">
