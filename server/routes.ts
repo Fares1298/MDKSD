@@ -84,13 +84,9 @@ async function sendEmailNotification(data: InsertContactSubmission) {
     </body>
     </html>`;
 
-    // Try multiple sender configurations for SendGrid
+    // Use the verified sender email address
     const senderConfigurations = [
-      // Option 1: SendGrid's sandbox domain for testing
-      'test@example.com',
-      // Option 2: Alternative test email
-      'noreply@example.com', 
-      // Option 3: Use the account email (if verified)
+      // Primary: Use the verified sender email
       'mdksdinstitute@gmail.com'
     ];
 
