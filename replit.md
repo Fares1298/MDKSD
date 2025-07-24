@@ -73,6 +73,13 @@ A modern, responsive web application for Matoshree Dr Kanchan Shantilalji Desard
 - Improved testimonial card design with college color scheme
 - Enhanced responsive layout: grid view on desktop, carousel on mobile
 
+### Homepage Programs Section Update (July 24, 2025)
+- Expanded from 5 to 6 course cards in the Programs section
+- Added "Diploma in Critical Care Nursing (DCCN)" as the 6th course
+- Implemented balanced 3x2 grid layout (3 columns, 2 rows) to eliminate empty space
+- Maintained responsive design: 1 column on mobile, 2 columns on tablet, 3 columns on desktop
+- All course cards now display uniformly without visual gaps
+
 ### UI Enhancements
 - Course cards now feature background images with white gradient overlays
 - Improved course card layout with image header, title positioning, and content organization

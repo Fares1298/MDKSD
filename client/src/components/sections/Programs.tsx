@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
-import { faUserNurse, faStethoscope, faFlask, faHeartbeat, faPrescriptionBottleMedical } from "@fortawesome/free-solid-svg-icons";
+import { faUserNurse, faStethoscope, faFlask, faHeartbeat, faPrescriptionBottleMedical, faXRay } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "wouter";
 
 interface Program {
@@ -46,6 +46,13 @@ const programs: Program[] = [
     title: "Diploma in Pharmacy (D.Pharm)",
     description: "Train in pharmaceutical sciences, drug formulation, and patient counseling.",
     link: "/courses/dpharm"
+  },
+  {
+    id: 6,
+    icon: faXRay,
+    title: "Diploma in Critical Care Nursing",
+    description: "Specialize in intensive care unit management and advanced patient monitoring.",
+    link: "/courses/dccn"
   }
 ];
 
@@ -79,19 +86,10 @@ export default function Programs() {
           </p>
         </div>
         
-        {/* First row: 3 programs */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
-          {programs.slice(0, 3).map((program) => (
+        {/* Display all 6 programs in a balanced grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {programs.map((program) => (
             <ProgramCard key={program.id} program={program} />
-          ))}
-        </div>
-        
-        {/* Second row: 2 programs centered */}
-        <div className="flex flex-wrap justify-center gap-8">
-          {programs.slice(3, 5).map((program) => (
-            <div key={program.id} className="w-full md:w-80 lg:w-96">
-              <ProgramCard program={program} />
-            </div>
           ))}
         </div>
         
